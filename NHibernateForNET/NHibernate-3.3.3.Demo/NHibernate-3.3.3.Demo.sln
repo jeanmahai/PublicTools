@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{C097148B-A67B-4ABF-99AF-8262EC9FF721}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{83994964-CC34-4B7C-AFD7-38D05B4203D8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nhibernate.Data", "Nhibernate.Data\Nhibernate.Data.csproj", "{3072AB45-E059-4666-996B-78C6ADC8E482}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nhibernate.Domain", "Nhibernate.Domain\Nhibernate.Domain.csproj", "{213FB3BC-1A17-48E4-8D2C-6208540B060B}"
@@ -17,14 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C097148B-A67B-4ABF-99AF-8262EC9FF721}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C097148B-A67B-4ABF-99AF-8262EC9FF721}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C097148B-A67B-4ABF-99AF-8262EC9FF721}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C097148B-A67B-4ABF-99AF-8262EC9FF721}.Release|Any CPU.Build.0 = Release|Any CPU
-		{83994964-CC34-4B7C-AFD7-38D05B4203D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{83994964-CC34-4B7C-AFD7-38D05B4203D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{83994964-CC34-4B7C-AFD7-38D05B4203D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{83994964-CC34-4B7C-AFD7-38D05B4203D8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3072AB45-E059-4666-996B-78C6ADC8E482}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3072AB45-E059-4666-996B-78C6ADC8E482}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3072AB45-E059-4666-996B-78C6ADC8E482}.Release|Any CPU.ActiveCfg = Release|Any CPU
