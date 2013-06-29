@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="NHibernate.Domain"
+                   namespace="NHibernate.Domain">
+  <class name="Nhibernate.Domain.User,Nhibernate.Domain" table="[User]">
+    <id name="ID" column="ID" type="Int32" >
+      <generator class="native"/>
+    </id>
+    <property name="Name" column="Name" type="string"  />
+    <property name="Sex" column="Sex" type="string"  />
+  </class>
+</hibernate-mapping>
