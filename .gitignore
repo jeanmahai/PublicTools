@@ -1,3 +1,4 @@
-*/obj/
-*/bin/
-*/_ReSharper*/
+obj/
+bin/
+*.suo
+_ReSharper*/
