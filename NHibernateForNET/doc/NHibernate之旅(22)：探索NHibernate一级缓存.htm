@@ -1,0 +1,451 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>NHibernate之旅(22)：探索NHibernate一级缓存 - 李永京 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="http://common.cnblogs.com/blog/css/common.css?id=20130622"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="http://common.cnblogs.com/Skins/Minyx2_Lite/style.css?id=20130622"/>
+<link type="text/css" rel="stylesheet" href="http://common.cnblogs.com/blog/css/common2.css"/>
+<link type="text/css" rel="stylesheet" href="http://common.cnblogs.com/css/shStyle.css"/>
+<link type="text/css" rel="stylesheet" href="http://www.cnblogs.com/lyj/customcss.aspx?id=23571"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/lyj/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/lyj/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/lyj/wlwmanifest.xml"/>
+<script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">
+var currentBlogApp = 'lyj';
+</script>
+<script src="http://common.cnblogs.com/blog/script/common.js?id=20130622" type="text/javascript"></script> 
+<script src="http://common.cnblogs.com/script/json2.js" type="text/javascript"></script>
+<script src="http://common.cnblogs.com/Skins/Minyx2_Lite/script/skin.js" language="javascript" type="text/javascript"></script>
+<script type="text/javascript" src="http://common.cnblogs.com/script/syntaxHighlighter.js"></script>
+</head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<SCRIPT language=javascript type=text/javascript src="http://files.cnblogs.com/lyj/lyj.js"></SCRIPT>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-15058429-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!--PageBeginHtml Block End-->
+
+
+<div id="container">
+    <a class="minyx" href="http://www.spiga.com.mx/">Spiga</a>
+    <ul id="topMnu">
+        <!-- 统计数据 -->
+        <li>
+        
+            
+Posts - 145, 
+Articles - 0, 
+Comments - 5523
+<!---->            
+        
+        </li>
+        <!-- 这边可以增加一些链接 -->
+        <!-- 博客园 -->
+        <li><a href="http://www.cnblogs.com">Cnblogs</a></li>
+        <!-- 管理 -->
+        <li id="topMnu-dashboard"><a id="lnkDashboard" href="http://www.cnblogs.com/lyj/admin/EditPosts.aspx">Dashboard</a></li>
+        <li><a id="lnkLogin" href="http://passport.cnblogs.com/login.aspx?ReturnUrl=http://www.cnblogs.com/lyj/archive/2008/11/24/1340253.html">Login</a></li>
+    </ul>
+    
+    <script language="javascript" type="text/javascript">
+        var m = window.__blog.topMenuRendered;
+        if (m) { m(__$("topMnu")); }
+    </script>
+
+    <div id="header">
+        <ul id="menu">
+                <!-- 首页，当前section加上current类 -->
+                <li id="menu-home" class="current"><a id="lnkHome" href="http://www.cnblogs.com/lyj/">Home</a></li>
+                <!-- 联系 -->
+                <li id="menu-contact"><a id="lnkContact" href="http://space.cnblogs.com/msg/send/%e6%9d%8e%e6%b0%b8%e4%ba%ac">Contact</a></li>
+                <!-- 相册 -->
+                <li id="menu-gallary"><a id="lnkGallery" href="http://www.cnblogs.com/lyj/gallery.html">Gallery</a></li>
+                <!-- Rss订阅 -->
+                <li id="rss"><a id="lnkRss" href="http://www.cnblogs.com/lyj/rss">RSS</a></li>
+        </ul>
+	<div id="newmsg"></div>
+        <h1>
+            <!-- 主标题 -->
+            <a id="lnkBlogTitle" href="http://www.cnblogs.com/lyj/">YJingLee's Blog</a>
+            <!-- 子标题 -->
+            <small>把握点点滴滴！</small>
+        </h1>
+    </div>
+    
+    <script language="javascript" type="text/javascript">
+        var m = window.__blog.headerRendered;
+        if (m) { m(__$("header")); }
+    </script>
+        
+    <div id="wrapper"> 
+        <div id="content">
+             <script language="javascript" type="text/javascript">
+                        var m = window.__blog.preRenderPosts;
+                        if (m) { m(); } 
+            </script>
+            
+	
+<div class="post" id="post"><a name="top"></a>
+    <h2>
+        <a id="ctl01_lnkTitle" href="http://www.cnblogs.com/lyj/archive/2008/11/24/1340253.html">NHibernate之旅(22)：探索NHibernate一级缓存</a></h2>
+    <small>
+        2008-11-24 22:49
+        by
+        李永京,
+        <span id="post_view_count">...</span>
+        阅读,
+        <span id="post-comment-count"><span id="post_comment_count">...</span></span>
+        评论,
+        <a href="#" onclick="PutInWz();return false;">收藏</a>,
+        <a id="ctl01_lnkEdit" href="http://www.cnblogs.com/lyj/admin/EditPosts.aspx?postid=1340253">编辑</a></small>
+    <div class="entry">
+        <div id="cnblogs_post_body"><p><em><strong>本节内容</strong></em></p>
+<ul>
+	<li>引入</li>
+	<li>NHibernate一级缓存介绍</li>
+	<li>NHibernate一级缓存管理</li>
+	<li>结语</li>
+</ul>
+<h2>引入</h2>
+<p>大家看看上一篇了吗？对象状态。这很容易延伸到NHibernate的缓存。在项目中我们灵活的使用NHibernate的缓存机制。NHibernate性能会大大提高的哦，我们接下来就来探索NHibernate缓存机制吧，这篇我没有准备什么，先来学习下NHibernate一级缓存。</p>
+<h2>NHibernate一级缓存介绍</h2>
+<p>NHibernate一级缓存即ISession缓存，ISession缓存属于事务级缓存，是NHibernate内置的。ISession缓存中的数据只在本ISession周期内使用。</p>
+<p>ISession实例创建后即可使用ISession缓存。此后，ISession实例操作数据时，首先查询内置缓存，如果ISession缓存中存在相应数据，则直接使用缓存数据。如果不存在，则查询数据库并把其结果存在缓存中。</p>
+<h3>实例1：查询一次持久化实例</h3>
+<pre class="code">[<span style="color:#2b91af">Test</span>]
+<span style="color:blue">public void </span>SessionCacheTest()
+{
+    <span style="color:#2b91af">Customer </span>customer = _transaction.GetCustomerById(1);
+}</pre>
+<p>我们一般就是这样查询一条数据，NHibernate初始化ISession后，ISession缓存中不存在这个数据，这时NHibernate需要从数据库中加载数据。</p>
+<p><a target="_blank" href="http://images.cnblogs.com/cnblogs_com/lyj/NHibernate/22-1.jpg">
+<img alt="查询一次持久化实例" height="91" src="http://images.cnblogs.com/cnblogs_com/lyj/NHibernate/22-1.jpg" width="489" /></a></p>
+<h3>实例2：一个会话装载两次持久化实例</h3>
+<pre class="code">[<span style="color:#2b91af">Test</span>]
+<span style="color:blue">public void </span>SessionCacheTest2()
+{
+    <span style="color:#2b91af">Console</span>.WriteLine(<span style="color:#a31515">"第一次读取持久化实例"</span>);
+    <span style="color:#2b91af">Customer </span>customer1 = _transaction.GetCustomerById(1);
+    <span style="color:#2b91af">Console</span>.WriteLine(<span style="color:#a31515">"第二次读取持久化实例"</span>);
+    <span style="color:#2b91af">Customer </span>customer2 = _transaction.GetCustomerById(1);
+    <span style="color:#2b91af">Assert</span>.AreSame(customer1, customer2);
+}</pre>
+<p>第一次加载数据后，持久化实例放入缓存。第二次查询同一个持久化实例时，缓存中已经存在该持久化实例，应用程序将直接从缓存中获取数据，而不必再次从数据库中读取数据，这样同时也提高了查询效率，看看结果：</p>
+<p><a target="_blank" href="http://images.cnblogs.com/cnblogs_com/lyj/NHibernate/22-2.jpg">
+<img alt="一个会话装载两次持久化实例" height="116" src="http://images.cnblogs.com/cnblogs_com/lyj/NHibernate/22-2.jpg" width="397" /></a></p>
+<h3>实例3：分别在两个会话中装载持久化实例</h3>
+<pre class="code">[<span style="color:#2b91af">Test</span>]
+<span style="color:blue">public void </span>SessionCacheTest3()
+{
+    <span style="color:blue">using </span>(_session)
+    {
+        <span style="color:#2b91af">Console</span>.WriteLine(<span style="color:#a31515">"--Session 1--读取持久化实例"</span>);
+        <span style="color:#2b91af">Customer </span>customer = _transaction.GetCustomerById(1);
+        <span style="color:#2b91af">Assert</span>.IsTrue(_session.Contains(customer));
+    }
+    ResetSession();
+    <span style="color:blue">using </span>(_session)
+    {
+        <span style="color:#2b91af">Console</span>.WriteLine(<span style="color:#a31515">"--Session 2--读取持久化实例"</span>);
+        <span style="color:#2b91af">Customer </span>customer = _transaction.GetCustomerById(1);
+        <span style="color:#2b91af">Assert</span>.IsTrue(_session.Contains(customer));
+    }
+}</pre>
+<p>在两个会话中获取同一持久化实例时，两个会话的缓存是独立的，一个会话的数据操作不会影响到另外一个会话。看看输出结果：</p>
+<p><a target="_blank" href="http://images.cnblogs.com/cnblogs_com/lyj/NHibernate/22-3.jpg">
+<img alt="分别在两个会话中装载持久化实例" height="138" src="http://images.cnblogs.com/cnblogs_com/lyj/NHibernate/22-3.jpg" width="515" /></a></p>
+<p>从结果我们可以说明虽然这两个会话读取的是同一个实例，但需要两次数据库操作，从而证明了Session缓存不是共享的，一个Session的缓存内容只有在本Session实例范围内可用。</p>
+<h3>实例4：比较ISession.Get()和ISession.Load()</h3>
+<p>不会吧，探索缓存比较这个？呵呵，如果你理解了它们的不同，或许你对NHibernate缓存还有一点了解了。开始。</p>
+<p>测试1：使用ISession.Get()方法按标识符获取Customer对象，访问标识符，再访问其它属性。</p>
+<pre class="code">[<span style="color:#2b91af">Test</span>]
+<span style="color:blue">public void </span>GetExistingEntityTest()
+{
+    <span style="color:#2b91af">Console</span>.WriteLine(<span style="color:#a31515">"----获取持久化实例----"</span>);
+    <span style="color:#2b91af">Customer </span>customerGet = _session.Get&lt;<span style="color:#2b91af">Customer</span>&gt;(1);
+    <span style="color:#2b91af">Assert</span>.IsNotNull(customerGet);
+    <span style="color:#2b91af">Console</span>.WriteLine(<span style="color:#a31515">"------访问这个实例的CustomerId属性------"</span>);
+    <span style="color:#2b91af">Console</span>.WriteLine(<span style="color:#a31515">"这个实例CustomerId属性：{0}"</span>, customerGet.CustomerId);
+    <span style="color:#2b91af">Assert</span>.AreEqual(customerGet.CustomerId, 1);
+    <span style="color:#2b91af">Console</span>.WriteLine(<span style="color:#a31515">"------访问这个实例的FirstName属性(不是CustomerId)-----"</span>);
+    <span style="color:#2b91af">Console</span>.WriteLine(<span style="color:#a31515">"这个实例的FirstName属性：{0}"</span>, customerGet.Name.Firstname);
+}</pre>
+<p>直接看结果：</p>
+<p><a target="_blank" href="http://images.cnblogs.com/cnblogs_com/lyj/NHibernate/22-4.jpg">
+<img alt="获取对象" height="206" src="http://images.cnblogs.com/cnblogs_com/lyj/NHibernate/22-4.jpg" width="504" /></a></p>
+<p>测试2：使用ISession.Load()方法按标识符获取Customer对象，访问标识符，再访问其它属性。</p>
+<pre class="code">[<span style="color:#2b91af">Test</span>]
+<span style="color:blue">public void </span>LoadExistingEntityTest()
+{
+    <span style="color:#2b91af">Console</span>.WriteLine(<span style="color:#a31515">"----加载持久化实例----"</span>);
+    <span style="color:#2b91af">Customer </span>customerLoad = _session.Load&lt;<span style="color:#2b91af">Customer</span>&gt;(1);
+    <span style="color:#2b91af">Assert</span>.IsNotNull(customerLoad);
+    <span style="color:#2b91af">Console</span>.WriteLine(<span style="color:#a31515">"------访问这个实例的CustomerId属性----"</span>);
+    <span style="color:#2b91af">Console</span>.WriteLine(<span style="color:#a31515">"这个实例CustomerId属性：{0}"</span>, customerLoad.CustomerId);
+    <span style="color:#2b91af">Assert</span>.AreEqual(customerLoad.CustomerId, 1);
+    <span style="color:#2b91af">Console</span>.WriteLine(<span style="color:#a31515">"------访问这个实例的FirstName属性(不是CustomerId)----"</span>);
+    <span style="color:#2b91af">Console</span>.WriteLine(<span style="color:#a31515">"这个实例的FirstName属性：{0}"</span>, customerLoad.Name.Firstname);
+}</pre>
+<p>看看结果：</p>
+<p><a target="_blank" href="http://images.cnblogs.com/cnblogs_com/lyj/NHibernate/22-5.jpg">
+<img alt="加载对象" height="175" src="http://images.cnblogs.com/cnblogs_com/lyj/NHibernate/22-5.jpg" width="459" /></a></p>
+<p>看到不同点了吗？这就是区别，我在测试中发现了这个秘密，使用ISession.Get()方法立即把对象实例保存到缓存中，使用ISession.Load()方法当你需要使用的时候再访问数据库把这个实例保存在缓存中。</p>
+<h2>NHibernate一级缓存管理</h2>
+<p>NHibernate为我们默认提供了一级缓存，那么我们想显式地去管理ISession缓存，怎么办呢？ISession接口为我们提供了一些方法来显式管理一级缓存。</p>
+<p>ISession.Evict(object)：从缓存中删除指定实例。</p>
+<p>ISession.Clear()：清空缓存。</p>
+<p>ISession.Contains(object)：检查缓存中是否包含指定实例。</p>
+<h3>实例分析</h3>
+<p>我们写一个测试来看看如何显式管理吧：</p>
+<pre class="code">[<span style="color:#2b91af">Test</span>]
+<span style="color:blue">public void </span>SessionCacheManageTest()
+{
+    <span style="color:green">//1.加载两个实例放入ISession缓存
+    </span><span style="color:#2b91af">Customer </span>customer1 = _transaction.GetCustomerById(1);
+    <span style="color:#2b91af">Customer </span>customer2 = _transaction.GetCustomerById(2);
+    <span style="color:green">//2.加载实例后，缓存包含两个实例
+    </span><span style="color:#2b91af">Assert</span>.IsTrue(_session.Contains(customer1));
+    <span style="color:#2b91af">Assert</span>.IsTrue(_session.Contains(customer2));
+    <span style="color:green">//3.从缓存中删除Customer1实例
+    </span>_session.Evict(customer1);
+    <span style="color:#2b91af">Assert</span>.IsFalse(_session.Contains(customer1));
+    <span style="color:#2b91af">Assert</span>.IsTrue(_session.Contains(customer2));
+    <span style="color:green">//4.清空ISession缓存，实例不和缓存关联
+    </span>_session.Clear();
+    <span style="color:#2b91af">Assert</span>.IsFalse(_session.Contains(customer1));
+    <span style="color:#2b91af">Assert</span>.IsFalse(_session.Contains(customer2));
+}</pre>
+<p>首先，我们加载两个Customer对象，先使用ISession.Evict(object)从缓存中删除一个Customer对象，再使用ISession.Clear()清空缓存，使用Session.Contains(object)检查缓存中的Customer对象。</p>
+<h2>结语</h2>
+<p>关于NHibernate一级缓存的内容就这些了，相信你对NHibernate一级缓存有了初步的认识。接下来慢慢探索NHibernate二级缓存吧。</p>
+<p><strong>本系列链接：<a target="_blank" href="http://www.cnblogs.com/lyj/archive/2008/10/30/1323099.html">NHibernate之旅系列文章导航</a></strong></p>
+<fieldset>
+<legend><b>NHibernate Q&amp;A</b></legend>
+<ul>
+	<li>欢迎加入<a target="_blank" href="http://space.cnblogs.com/group/NHibernate">NHibernate中文社区</a>，一起讨论NHibernate知识！</li>
+	<li>请到<a target="_blank" href="http://space.cnblogs.com/group/NHibernate">NHibernate中文社区</a>下载本系列相关源码。</li>
+</ul>
+</fieldset>
+<p>下次继续分享NHibernate！</p>
+<p id="LyjSignature"><br />
+作者：<a href="http://lyj.cnblogs.com" target="_blank">李永京</a>（<a href="http://lyj.cnblogs.com" target="_blank">YJingLee's Blog</a>）<br />
+出处：<a href="http://lyj.cnblogs.com" target="_blank">http://lyj.cnblogs.com</a><br />
+本文版权归作者和博客园共有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。</p>
+</div><div id="MySignature"></div>
+        
+<script type="text/javascript">
+var isLogined = false;
+var cb_blogId = 23571;
+var cb_entryId = 1340253;
+var cb_blogApp = currentBlogApp;
+var cb_blogUserGuid = "4968360b-63cf-dd11-9e4d-001cf0cd104b";
+var cb_entryCreatedDate = '2008/11/24 22:49:00';
+var enableGoogleAd = true;
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+</script>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+<script type="text/javascript">
+    //SyntaxHighlighter.config.strings.expandSource = '<span><img src="http://static.cnblogs.com/images/expand-code.gif" alt="" class="expand-code-icon"/>View Code</span>';
+    $(function () {  
+        loadViewCount(cb_entryId);
+        fixPostBodyFormat();
+        loadAdUnderPost();
+        loadBlogSignature();
+        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);        
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);        
+    });
+</script>
+    </div>
+    <span><script src="http://counter.cnblogs.com/blog/post/1340253" type="text/javascript"></script></span>
+    <ul class="postmetadata">
+        <li id="ctl01_liCate" class="icon_cat"><strong>Categories: </strong>
+            <a href='http://www.cnblogs.com/lyj/category/129155.html'>NHibernate</a>            
+        </li>
+        <li id="ctl01_liTag" class="icon_bullet"><strong>Tags: </strong>
+            <a href="http://www.cnblogs.com/lyj/tag/NHibernate/">NHibernate</a>
+        </li>
+        
+    </ul>
+</div>
+
+<script language="javascript" type="text/javascript">
+    var m = window.__blog.postRendered;
+    if (m) { m(__$("post")); }
+</script>
+
+<script language="javascript" type="text/javascript">
+    var m = window.__blog.postRenderPosts;
+    if (m) { m(); }
+</script><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"></div>
+
+<script type="text/javascript">
+    if (typeof commentManager === 'undefined') {
+        commentManager = new blogCommentManager();
+    }
+    commentManager.loadCommentForm();   
+</script>
+
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="程序员的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="ad_under_post_holder"></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+</div>
+
+
+
+
+
+        </div>
+        
+	    <script language="javascript" type="text/javascript">
+	               var m = window.__blog.contentRendered;
+	               if (m) { m(__$("content")); }
+        </script>
+
+	    <div id="sidebar">
+			    
+
+<div id="about">
+    <div>
+        <h2 id="about_title">
+            About
+        </h2>
+        <div id="about_body">
+        <div id="blog-news"></div>
+        </div>
+    </div>
+</div>
+
+			    <script language="javascript" type="text/javascript">
+                        var m = window.__blog.aboutRendered;
+                        if (m) { m(__$("about")); }
+                </script>
+                
+<script type="text/javascript">
+function zzk_go()
+{
+	var blogapp = 'lyj';
+	var keystr = encodeURIComponent("blog:"+blogapp+" "+document.getElementById('q').value);
+    window.location = "http://zzk.cnblogs.com/s?w="+keystr;
+}
+function zzk_go_enter(event)
+{
+	if(event.keyCode == 13)
+	{
+	    zzk_go();
+	    return false;
+	}
+}
+</script>
+
+<div id="mySearchWrapper">
+    <div id="mySearch">
+        <input type="image" src="/skins/Minyx2_Lite/images/btnsearch.gif" id="btnZzk"  class="submit" onclick="zzk_go();return false;"/>
+        <label class="lb_search"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="keyword" /></label>
+    </div>
+</div>
+
+                <script language="javascript" type="text/javascript">
+                                var m = window.__blog.searchFormRendered;
+                                if (m) { m(__$("searchform")); }
+                </script>
+                <div id="sideMain">
+                </div>
+                <div id="sideRight">
+                </div>
+                <div id="sideLeft">            
+                </div>
+			    
+			    <div id="sideContainer">
+                </div>
+                <script language="javascript" type="text/javascript">
+                    $.ajax({
+                        url: '/' + currentBlogApp + '/mvc/blog/Minyx2_Lite_SideColumn.aspx',
+                        data: '{}',
+                        type: 'post',
+                        dataType: 'text',
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            if (data) {
+                                $("#sideContainer").html(data);
+                                if ($("#blog-calendar").length) {
+                                    loadBlogCalendar();
+                                }
+                                loadBlogSideBlocks();
+                                var m = window.__blog.sideContainerRendered;
+                                if (m) { m(__$("sideContainer")); }
+                                window.__blog.sidebar.__layout();
+                            }
+                        }
+                    });
+                    
+                 </script>       	
+			                      
+ 		    </div>
+     		
+	        <script language="javascript" type="text/javascript">
+	        var m = window.__blog.sidebarRendered;
+	        if (m) { m(__$("sidebar")); }
+                </script>        
+     </div>
+     
+        <script language="javascript" type="text/javascript">
+            var m = window.__blog.wrapperRendered;
+            if (m) { m(__$("wrapper")); }
+        </script>
+
+</div>
+<!-- end of container -->
+    
+<script language="javascript" type="text/javascript">
+    var m = window.__blog.containerRendered;
+    if (m) { m(__$("container")); }
+</script>
+
+<div id="footer">
+        
+<p id="logoFoot">
+    <a href="http://www.spiga.com.mx/" title="Agencia Interactiva Spiga">www.spiga.com.mx</a>
+</p>
+<div class="footText">
+<p>
+Copyright &copy;2013 李永京
+</p>
+<p>
+<a href="http://www.cnblogs.com">博客园</a>
+</p>
+</div>
+</div><!--end: footer -->
+
+<!--PageEndHtml Block Begin-->
+<script language="javascript" src="http://count17.51yes.com/click.aspx?id=179508025&logo=1"/>
+<!--PageEndHtml Block End-->
+<script type="text/javascript" src="http://common.cnblogs.com/script/google-analytics.js"></script>
+</body>
+</html>
