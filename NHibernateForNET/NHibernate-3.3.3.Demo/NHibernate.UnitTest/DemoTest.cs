@@ -14,7 +14,7 @@ namespace NHibernate.UnitTest
         public void TestMethod1()
         {
             var dal = new HelpmateDAL();
-            dal.QueryTrend();
+            var result=dal.QueryTrend();
             //var a = dal.LotteryTypes();
         }
     }
