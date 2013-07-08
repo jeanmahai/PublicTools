@@ -1,13 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nhibernate.Data", "Nhibernate.Data\Nhibernate.Data.csproj", "{3072AB45-E059-4666-996B-78C6ADC8E482}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nhibernate.DAL", "Nhibernate.Data\Nhibernate.DAL.csproj", "{3072AB45-E059-4666-996B-78C6ADC8E482}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nhibernate.Domain", "Nhibernate.Domain\Nhibernate.Domain.csproj", "{213FB3BC-1A17-48E4-8D2C-6208540B060B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nhibernate.DataModel", "Nhibernate.Domain\Nhibernate.DataModel.csproj", "{213FB3BC-1A17-48E4-8D2C-6208540B060B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nhibernate.Web", "Nhibernate.Web\Nhibernate.Web.csproj", "{07680455-0033-4C9D-AE61-0C458BF864FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.ViewModel", "NHibernate.ViewModel\NHibernate.ViewModel.csproj", "{036A0451-3EFB-4EE6-9F43-06288F5F0DBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.Utility", "NHibernate.Utility\NHibernate.Utility.csproj", "{578CC575-8B84-43CE-A84D-67C7CE1EF0C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.UnitTest", "NHibernate.UnitTest\NHibernate.UnitTest.csproj", "{4DB413C6-1DCD-47F9-9EF0-DF49B4948C5F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{54DAA537-348A-461E-9C80-D6AC41A468BA}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		NHibernate-3.3.3.Demo.vsmdi = NHibernate-3.3.3.Demo.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
 EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = NHibernate-3.3.3.Demo.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -21,10 +35,18 @@ Global
 		{213FB3BC-1A17-48E4-8D2C-6208540B060B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{213FB3BC-1A17-48E4-8D2C-6208540B060B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{213FB3BC-1A17-48E4-8D2C-6208540B060B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{07680455-0033-4C9D-AE61-0C458BF864FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{07680455-0033-4C9D-AE61-0C458BF864FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07680455-0033-4C9D-AE61-0C458BF864FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{07680455-0033-4C9D-AE61-0C458BF864FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{036A0451-3EFB-4EE6-9F43-06288F5F0DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{036A0451-3EFB-4EE6-9F43-06288F5F0DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{036A0451-3EFB-4EE6-9F43-06288F5F0DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{036A0451-3EFB-4EE6-9F43-06288F5F0DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{578CC575-8B84-43CE-A84D-67C7CE1EF0C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{578CC575-8B84-43CE-A84D-67C7CE1EF0C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{578CC575-8B84-43CE-A84D-67C7CE1EF0C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{578CC575-8B84-43CE-A84D-67C7CE1EF0C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DB413C6-1DCD-47F9-9EF0-DF49B4948C5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DB413C6-1DCD-47F9-9EF0-DF49B4948C5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DB413C6-1DCD-47F9-9EF0-DF49B4948C5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DB413C6-1DCD-47F9-9EF0-DF49B4948C5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

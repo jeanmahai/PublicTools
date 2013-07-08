@@ -9,7 +9,7 @@ namespace Nhibernate.Data
 {
     public class NHibernateHelper
     {
-        private ISessionFactory _sessionFactory;
+        private readonly ISessionFactory _sessionFactory;
 
         public NHibernateHelper()
         {

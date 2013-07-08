@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Nhibernate.DataModel"
+                   namespace="Nhibernate.DataModel">
+  <class name="Nhibernate.DataModel.Model.LotteryType,Nhibernate.DataModel" 
+         table="[ResultCategory_28]">
+    <cache usage="read-only"/>
+    
+    <id name="RetNum" column="RetNum" type="Int32" >
+      <generator class="assigned"/>
+    </id>
+    
+    <property name="BigOrSmall" column="BigOrSmall" type="String"  />
+    <property name="MiddleOrSide" column="MiddleOrSide" type="String"  />
+    <property name="OddOrDual" column="OddOrDual" type="String"  />
+    <property name="MantissaBigOrSmall" column="MantissaBigOrSmall" type="String"  />
+
+    <property name="ThreeRemainder" column="ThreeRemainder" type="String"  />
+    <property name="FourRemainder" column="FourRemainder" type="String"  />
+    <property name="FiveRemainder" column="FiveRemainder" type="String"  />
+  </class>
+</hibernate-mapping>
