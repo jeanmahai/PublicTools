@@ -1,0 +1,19 @@
+﻿<appSettings>
+  <!--sql文件配置-->
+  <add key="NHibernate.Configs.Sql" value="NHibernateConfig/SQLS/"/>
+</appSettings>
+
+
+<?xml version="1.0" encoding="utf-8" ?>
+<Sqls>
+  <sql name="test">
+    <![CDATA[
+    SELECT * FROM xxx
+    ]]>
+  </sql>
+  <sql name="tes1t">
+    <![CDATA[
+    SELECT * FROM xxx
+    ]]>
+  </sql>
+</Sqls>
