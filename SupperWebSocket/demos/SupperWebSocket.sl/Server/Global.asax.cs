@@ -9,11 +9,11 @@ namespace Server
 {
     public class Global : System.Web.HttpApplication
     {
-        private SupperWebSocketServerHelper m_WebSocketHelper=new SupperWebSocketServerHelper();
+        private readonly MyWebSocket _WebSocket = new MyWebSocket();
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            m_WebSocketHelper.Start();
+            _WebSocket.Start();
         }
 
         protected void Session_Start(object sender, EventArgs e)

@@ -1,0 +1,7 @@
+﻿{
+	"main":"index.htm",
+	"name":"test",
+	"window":{
+		"toolbar":false
+	}
+}
