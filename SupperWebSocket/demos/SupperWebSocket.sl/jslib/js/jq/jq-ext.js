@@ -74,10 +74,6 @@ data-height:10=10px/10*=最小10px,如果还有空间,则填满/auto=自动填�
             $.each(g2, caculate);
             $.each(g3, caculate);
             $.each(g4, caculate);
-            console.info(g1.length);
-            console.info(g2.length);
-            console.info(g3.length);
-            console.info(g4.length);
             //#endregion
         };
         fn();

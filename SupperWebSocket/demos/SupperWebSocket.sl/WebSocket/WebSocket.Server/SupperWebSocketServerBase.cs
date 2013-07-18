@@ -12,9 +12,9 @@ namespace WebSocket.WebSocket.Server
 {
     public class SupperWebSocketServerBase
     {
-        //public delegate WebSocketResponse NewMessageReceivedHandler(WebSocketSession session, WebSocketRequest request);
+        public delegate void NewMessageReceivedHandler(WebSocketSession session, WebSocketRequest request,WebSocketResponse response);
 
-        //public event NewMessageReceivedHandler OnNewMessage;
+        public event NewMessageReceivedHandler OnNewMessage;
 
         private readonly JavaScriptSerializer m_JSON = new JavaScriptSerializer();
 
@@ -79,30 +79,23 @@ namespace WebSocket.WebSocket.Server
 
         }
 
-        protected virtual void OnNewMessageReceived(WebSocketSession session, string value)
+        private void OnNewMessageReceived(WebSocketSession session, string value)
         {
             var request = m_JSON.Deserialize<WebSocketRequest>(value);
             var response = new WebSocketResponse();
             response.Handler = request.ClientCallbackID;
-            if (request != null)
+            var _handler = InitHandler(request.Handler);
+            if (_handler != null)
             {
-                var _response = new StringBuilder();
-                var _handler = InitHandler(request.Handler);
-                if (_handler != null)
-                {
-                    //_response.AppendFormat("创建处理程序成功\n");
-                    var _result = _handler.Analyze(request, response);
-                    if (_result != null)
-                    {
-                        session.Send(m_JSON.Serialize(_result));
-                    }
-                    //_response.Append(_result + "\n");
-                }
-                else
-                {
-                    _response.AppendFormat("创建处理程序失败\n");
-                }
-                //session.Send(_response.ToString());
+                response = _handler.Analyze(request, response);
+                //if (response != null)
+                //{
+                //    session.Send(m_JSON.Serialize(response));
+                //}
+            }
+            if(OnNewMessage!=null)
+            {
+                OnNewMessage(session, request, response);
             }
         }
 

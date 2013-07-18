@@ -57,16 +57,12 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="WebSocket.Client\EasyWebSocket.js" />
-    <Content Include="WebSocket.Client\WebSocketMessageBase.js" />
-    <Content Include="WebSocket.Client\WebSocketRequest.js" />
-    <Content Include="WebSocket.Client\WebSocketResponse.js" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chatting.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs" />
     <Compile Include="MyWebSocket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

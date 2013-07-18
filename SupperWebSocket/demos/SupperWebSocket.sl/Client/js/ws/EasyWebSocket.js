@@ -19,8 +19,8 @@ function EasyWebSocket(ws, onopen, onclose, onerror) {
     this.onclose = onclose;
     this.onerror = onerror;
 
-    this.socket.onclose = this.onclose||emptyFn;
-    this.socket.onerror = this.onerror||emptyFn;
+    this.socket.onclose = this.onclose || emptyFn;
+    this.socket.onerror = this.onerror || emptyFn;
     this.socket.onopen = this.onopend || emptyFn;
     this.socket.onmessage = function (evt) {
         var _response;
@@ -39,6 +39,14 @@ function EasyWebSocket(ws, onopen, onclose, onerror) {
                 me.removeCallback(_response.Handler);
                 return;
             }
+            else if (_response.RemoteHandler) {
+                eval(_response.RemoteHandler);
+                return;
+            }
+        }
+        else if (_response.RemoteHandler) {
+            eval(_response.RemoteHandler);
+            return;
         }
         console.warn("无处理对象,data=" + _response);
     };
