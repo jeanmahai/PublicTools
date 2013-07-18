@@ -52,6 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.htm" />
+    <Content Include="js\jq\jq-ext.js" />
+    <Content Include="js\jq\jquery-1.9.1.min.js" />
+    <Content Include="js\ws\EasyWebSocket.js" />
+    <Content Include="js\ws\WebSocketMessageBase.js" />
+    <Content Include="js\ws\WebSocketRequest.js" />
+    <Content Include="js\ws\WebSocketResponse.js" />
+    <Content Include="style\style.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

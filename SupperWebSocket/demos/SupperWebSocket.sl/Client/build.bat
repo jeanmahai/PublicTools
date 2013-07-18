@@ -2,7 +2,7 @@
 
 cd..
 
-set current_path=%cd%
+set current_path=C:\Users\jm96\Desktop
 
 @echo ´ò°üAPP...
 
