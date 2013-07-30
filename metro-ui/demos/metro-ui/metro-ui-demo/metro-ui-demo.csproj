@@ -51,11 +51,15 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bg_win8.jpg" />
     <Content Include="css\modern-responsive.css" />
     <Content Include="css\modern.css" />
     <Content Include="css\theme-dark.css" />
+    <Content Include="demos\grid.htm" />
+    <Content Include="demos\index.htm" />
     <Content Include="demos\layout.htm" />
     <Content Include="demos\global_style.htm" />
+    <Content Include="jautoheight.1.0.js" />
     <Content Include="javascript\accordion.js" />
     <Content Include="javascript\buttonset.js" />
     <Content Include="javascript\calendar.js" />

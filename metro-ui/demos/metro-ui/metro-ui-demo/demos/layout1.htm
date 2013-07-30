@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/modern-responsive.css" rel="stylesheet" type="text/css" />
+    <link href="../css/modern.css" rel="stylesheet" type="text/css" />
+    <style>
+        .main-frame
+        {
+            width: 940px;
+            margin: 0 auto 0 auto;
+        }
+    </style>
+    <script src="../jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="../jautoheight.1.0.js" type="text/javascript"></script>
+</head>
+<body class="metrouicss " data-height="auto">
+    <div class="bg-color-blue" data-height="auto">
+        <div class="page bg-color-blueLight">
+            <div class="page-header bg-color-blueDark">
+                <div class="page-header-content">
+                    <a class="back-button big page-back"></a>
+                    
+                </div>
+            </div>
+            <div class="page-region bg-color-orange" data-height="auto">
+                <div class="page-region-content" >
+                    <div class="tile icon">
+                        <div class="tile-content">
+                            <img />
+                        </div>
+                        <div class="brand">
+                            <div class="badge">
+                            </div>
+                            <div class="name">
+                                test</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function updateLayout() {
+        $("html").layout();
+        $("body").layout();
+        $("div.page").layout();
+    }
+
+    $(function () {
+        updateLayout();
+    });
+</script>
+</html>
