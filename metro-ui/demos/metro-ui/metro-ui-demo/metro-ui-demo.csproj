@@ -56,9 +56,10 @@
     <Content Include="css\modern.css" />
     <Content Include="css\theme-dark.css" />
     <Content Include="demos\grid.htm" />
-    <Content Include="demos\index.htm" />
+    <Content Include="demos\layout1.htm" />
     <Content Include="demos\layout.htm" />
     <Content Include="demos\global_style.htm" />
+    <Content Include="fonts\license.txt" />
     <Content Include="jautoheight.1.0.js" />
     <Content Include="javascript\accordion.js" />
     <Content Include="javascript\buttonset.js" />
@@ -86,6 +87,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fonts\iconFont.eot" />
+    <None Include="fonts\iconFont.svg" />
+    <None Include="fonts\iconFont.ttf" />
+    <None Include="fonts\iconFont.woff" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
