@@ -1,0 +1,13 @@
+PublicTools
+git src:  git@github.com:jeanmahai/PublicTools.git
+===========================
+包括所有的公共库,js,c#,css等
+===========================
+目录结构如:
+Jquery--libs				文件夹,存放一些引用文件
+	    demos				库的使用demo
+		readme.txt/doc      库的描述,下载地址,帮助文档的地址,使用说明等
+		src                 源代码,如果是自己写的库,就有src
+
+如果libs和demos在库的主站上都有的话,只需要添加一个readme就可以了,到时候要用的话,直接在网上查找.
+===========================
