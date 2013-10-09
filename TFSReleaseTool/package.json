@@ -1,0 +1,9 @@
+{
+    "main":"index.html",
+    "name":"test",
+    "window":{
+        "toolbar":false,
+        "width":940,
+        "min_width":940
+    }
+}
