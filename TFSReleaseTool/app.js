@@ -1,44 +1,86 @@
-var path=require("path");
-var fs=require("fs");
+﻿var PATH=require("path");
+var FS=require("fs");
+var PROCESS=require("process");
 
-//var nor=path.normalize("d:\\jean.h.ma\\downloads\\github\\.");
-//fs.exists(nor,function(exists){
-//    console.info(exists);
-//});
-//
-//fs.createReadStream("D:\\OY\\OYSD\\03_Code\\SourceCode\\Front\\02_Portal\\WebUI\\Order\\OrderDetail.aspx")
-//    .pipe(fs.createWriteStream("C:\\Users\\jm96\\Desktop\\111.aspx"));
+PROCESS.on("uncaughtException",function(err){
+	showMessage("发生错误了:"+err);
+});
 
-function getPathsStr(){
-    var dom=document.getElementById("txtPaths");
-    alert(dom.value);
-    return dom.value;
+function getPathsArr(strs){
+	var lines=strs.split("\n");
+	var arrPaths=[],
+		arrLineParts,
+		i,
+		len=lines.length;
+	for(i=0;i<len;i+=1){
+		arrLineParts=lines[i].split("\t");
+		if(arrLineParts.length!==3) continue;
+		arrPaths.push(arrLineParts[2]+"\\"+arrLineParts[0]);
+	}
+	return arrPaths;
 }
 
-function getAllPath(str){
-    showMessage(str);
-    var paths=[];
-    var strs=str.split("\n");
-    var len=strs.length;
-    var i,fileName,fileFolder,fileParts,fileFullPath;
+function takeFromArray(arr,count){
+	var i,result=[];
+	for(i=0;i<count;i+=1){
+		result.push(arr[i]);
+	}
+	return result;
+}
 
-    for(i=0;i<len;i+=1){
-        fileParts=strs[i].split("\t");
-        fileName=fileParts[0];
-        fileFolder=fileParts[2];
-        fileFullPath=path.join(fileFolder,fileName);
-        showMessage(fileFullPath);
-        paths.push(fileFullPath);
-    }
-    return paths;
+function checkDir(arrDir,index,callback){
+	if(index>=arrDir.length) return;
+	var path=takeFromArray(arrDir,index+1).join("\\");
+	FS.exists(path,function(ext){
+		if(ext){
+			if(index===(arrDir.length-1)) callback();
+			else checkDir(arrDir,index+1,callback);
+		}
+		else{
+			FS.mkdir(path);
+			showMessage("create dir:"+path);
+			checkDir(arrDir,index+1,callback);
+		}
+	});
+}
+
+function copyTo(path,targetPath,match){
+	var targetPath=PATH.join(targetPath,match);
+	
+	var matchPath=path.split(match)[1];
+	if(!matchPath) {
+		showMessage("no matched path");
+		return;
+	}
+	targetPath=PATH.join(targetPath,matchPath);
+	var parts=PATH.dirname(targetPath).split(PATH.sep);
+	console.info(parts.length);
+	checkDir(parts,0,function(){
+		FS.exists(targetPath,function(ext){
+			if(ext) {
+				FS.unlink(targetPath,function(){
+					FS.createReadStream(path).pipe(FS.createWriteStream(targetPath));
+					showMessage("文件:"+targetPath+"复制成功");
+				})
+			}
+		});
+	});
 }
 
 function showMessage(str){
-    document.getElementById("divMsg").innerHTML+=str;
+	document.getElementById("divMsg").innerHTML+=str+"<br/>";
+	//console.info(str);
 }
 
-function showPaths(){
-    var strPath=getPathsStr();
-    var arrPath=getAllPath(strPath);
-    showMessage(arrPath.join("<br/>"));
+function ok(){
+	var dom=document.getElementById("txtPaths");
+	var val=dom.value;
+	var arrPaths=getPathsArr(val);
+	var i,
+		len=arrPaths.length,
+		targetPath=PATH.normalize(document.getElementById("txtTargetPath").value),
+		match=document.getElementById("txtMatch").value;
+	for(i=0;i<len;i+=1){
+		copyTo(arrPaths[i],targetPath,match);
+	}
 }

@@ -1,13 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title></title>
     <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
-<textarea id="txtPaths"></textarea>
-<button onclick="showPaths()">show paths</button>
-<div id="divMsg"></div>
-
+<div>
+	<label>target path:</label><input type="text" id="txtTargetPath" value="D:\\jean.h.ma\\test"/>
+	<label>match:</label><input type="text" id="txtMatch" value="WebUI"/>
+	<button onclick="ok()">ok</button></div>
+<div><textarea id="txtPaths" style="min-width:100%; width:auto;height:100px;overflow:scroll;"></textarea></div>
+<div id="divMsg" style="height:200px;"></div>
 </body>
 </html>
