@@ -2,6 +2,14 @@
 <html>
 <head>
     <title></title>
+	<style type="text/css">
+		
+		*{padding:0px;margin:0px;overflow:hidden;}
+		input,label,button,div{padding:5px;}
+		button{min-width:100px;}
+		textarea{padding:3px;overflow-x:hidden}
+		#divMsg{height:270px;overflow-y:scroll;}
+	</style>
     <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
@@ -9,7 +17,9 @@
 	<label>target path:</label><input type="text" id="txtTargetPath" value="D:\\jean.h.ma\\test"/>
 	<label>match:</label><input type="text" id="txtMatch" value="WebUI"/>
 	<button onclick="ok()">ok</button></div>
-<div><textarea id="txtPaths" style="min-width:100%; width:auto;height:100px;overflow:scroll;"></textarea></div>
-<div id="divMsg" style="height:200px;"></div>
+<div>
+	<textarea id="txtPaths" style="width:99%;height:100px;"></textarea>
+</div>
+<div id="divMsg" ></div>
 </body>
 </html>

@@ -3,7 +3,7 @@
     "name":"test",
     "window":{
         "toolbar":false,
-        "width":940,
-        "min_width":940
+		"frame":true,
+		"resizable":false
     }
 }

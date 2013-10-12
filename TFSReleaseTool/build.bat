@@ -36,4 +36,3 @@ echo ================================
 xcopy %buildedRelease%\* %targetRelease% /s/r/y
 
 %targetRelease%\nw.exe
-pause
