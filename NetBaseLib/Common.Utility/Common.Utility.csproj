@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="PostSharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\PostSharp\PostSharp.dll</HintPath>
@@ -86,6 +89,7 @@
     <Compile Include="CodeNamePair\CodeNamePairFileWatcher.cs" />
     <Compile Include="CodeNamePair\CodeNamePairManager.cs" />
     <Compile Include="CodeNamePair\CodeNamePairSection.cs" />
+    <Compile Include="ConvertHelper.cs" />
     <Compile Include="DataMapper\Analyst.cs" />
     <Compile Include="DataMapper\DataMapper.cs" />
     <Compile Include="DataMapper\EnumCodeMapper.cs" />
@@ -100,6 +104,9 @@
     <Compile Include="Encryption\CryptoManager.cs" />
     <Compile Include="Encryption\MD5Encrypt.cs" />
     <Compile Include="EnumHelper.cs" />
+    <Compile Include="Excel\ExportExcel.cs" />
+    <Compile Include="Excel\Helper.cs" />
+    <Compile Include="Excel\ImportExcel.cs" />
     <Compile Include="GuidCode.cs" />
     <Compile Include="Encryption\HashEncrypt.cs" />
     <Compile Include="Encryption\Hash_MD5.cs" />
@@ -123,6 +130,8 @@
     <Compile Include="FileUploadManager.cs" />
     <Compile Include="HtmlViewHandler.cs" />
     <Compile Include="ImageUtility.cs" />
+    <Compile Include="Json\IJson.cs" />
+    <Compile Include="Json\JsonHelper.cs" />
     <Compile Include="Log\EmitterFactory.cs" />
     <Compile Include="Log\Emitter\EventLogEmitter.cs" />
     <Compile Include="Log\Emitter\QueueEmitter.cs" />
@@ -172,6 +181,7 @@
     <Compile Include="StringUtility.cs" />
     <Compile Include="TemplateString.cs" />
     <Compile Include="TransactionScopeFactory.cs" />
+    <Compile Include="UrlCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Log\log使用的配置说明.txt" />
