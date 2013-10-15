@@ -1,0 +1,35 @@
+﻿配置的Sample：
+<?xml version="1.0"?>
+<configuration>
+  <configSections>
+    <section name="log" type="Common.Utility.LogSection, Common.Utility" />
+  </configSections>
+  <connectionStrings>
+    <add name="log" connectionString="Data Source=10.16.83.72,14339\NesoftApp;Initial Catalog=ConfigCenter;User ID=nesoft;Password=nesoft@123" providerName="SqlServer" />
+  </connectionStrings>
+  <log source="TestApp">
+    <emitter type="eventLog" name="Benny" />
+    <emitter type="text" />
+    <emitter type="sqlDb" connectionStringKey="log" encrypted="false" connectionStringConfigType="AppConfig" sql="INSERT INTO [dbo].[EventLog] ([LogID],[Source],[Category],[RequestUrl],[ServerName],[ServerTime],[ServerIP],[ReferenceKey],[UserHostName],[UserHostAddress],[Content],[ProcessID],[ProcessName],[ThreadID],[ExtendedProperties]) VALUES(@LogID,@Source,@Category,@RequestUrl,@ServerName,@ServerTime,@ServerIP,@ReferenceKey,@UserHostName,@UserHostAddress,@Content,@ProcessID,@ProcessName,@ThreadID,@ExtendedProperties)" />
+    <emitter type="queue" queueId="1" subject="Log" />
+    <emitter type="restful" url="http://127.0.0.1:9999/Rest/WriteLog" method="Post" format="Json" />
+    <emitter type="soap" url="http://127.0.0.1:9999/Soap?singleWsdl" method="WriteLog" />
+  </log>
+  <appSettings>
+    <add key="ServiceRegistryConfigUrl" value="http://10.16.83.72/esb/ServiceRegistry.aspx" />
+  </appSettings>
+</configuration>
+
+说明：
+1. 首先要配置configSections中的<section name="log" type="Common.Utility.LogSection, Common.Utility" />
+2. <log source="TestApp"></log>节点为配置主节点，source用来指定标示应用系统，该节点下的emitter节点则表示具体所使用的写日志类，当前内置了6中写日志的类，分别为：
+（1）eventLog，表示将日志写入系统事件日志，通过属性name来指定系统事件的日志名称，如果没有配置name属性则默认使用当前程序集的名称
+（2）text，表示将日志写入硬盘文件，通过path属性来指定文件存放的目录，可以是相对路径或绝对路径，如果没有设置path属性，则默认放到当前应用根目录下的Log目录中
+（3）sqlDb，表示将日志写入数据库中，connectionStringKey用来设置连接字符串的key，encrypted表示所配置的连接字符串是否加密（默认不设则为加密的），
+connectionStringConfigType则是用来指定连接字符串的配置方式，有2种：AppConfig，表示将连接字符串配置在app.config或web.config的<connectionStrings>节点中的，DatabaseListFile，则表示将连接字符串放到DatabaseList文件里（ECC的标准方式）；
+sql用来指定插入数据库的sql语句，其中的sql参数需要固定，为LogEntry这个实体中的属性名。
+（4）queue，表示将日志放到esb的消息队列中，其中queueId用来指消息队列编号，subject用来指定消息主题；另外如果使用了该emitter则需要在appSettings中设置ServiceRegistryConfigUrl；
+（5）restful，调用restful service来写日志，其中url为restful service地址，method为http的方式（Post、Get、Put、Delete），format有2种：Json和Xml
+（6）soap，调用标准soap 1.1的webservice来写日志，其中url为webservice地址，method为方法名字
+
+restful service和webservice的开发的要求，就是对于写日志的服务方法的入参数据，需要是一个参数，并且该参数类型为Common.Utility.LogEntry或与这个类型属性相同、类名相同（命名空间可不同）的自定义类型也可以。

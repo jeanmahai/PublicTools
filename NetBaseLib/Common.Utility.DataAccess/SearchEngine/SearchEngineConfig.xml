@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<config>
+  
+  <items>
+    <item name="TourProductSearchResult" type="TestProject1.TourDIYSearch.TourProductSearchResult,TestProject1" provider="Solr"></item>
+  </items>
+
+  <providers>
+    <provider name="Solr" type="Common.Utility.DataAccess.SearchEngine.Solr.SolrSearchProvider,Common.Utility.DataAccess">
+      
+      <!--Solr服务基础地址-->
+      <baseUrl>http://10.1.220.196:8080/solr/</baseUrl>
+      
+      <searchers>
+
+        <!--Solr Searcher 配置
+      
+        assembly ： Searcher完全限定名
+        result : Searcher 返回的查询结果类型完全限定名
+      
+        -->
+        <searcher type="TestProject1.TourDIYSearch.TourDIYSolrSearcher,TestProject1" 
+                  result="TestProject1.TourDIYSearch.TourProductSearchResult,TestProject1" />
+        
+      </searchers>
+    </provider>
+  </providers>
+</config>
