@@ -1,4 +1,10 @@
-﻿var PATH=require("path");
+﻿/*
+	发布工具,从pendingchange中复制出需要发布的文件信息,粘贴到textarea中,设置好target path,即要复制到那个目录,match是匹配那些目录进行复制,点OK即复制这些文件.文件列表的格式就是从pendingchange中复制出来的格式,不需要修改.
+	
+*/
+
+
+var PATH=require("path");
 var FS=require("fs");
 var PROCESS=require("process");
 
@@ -62,6 +68,10 @@ function copyTo(path,targetPath,match){
 					FS.createReadStream(path).pipe(FS.createWriteStream(targetPath));
 					showMessage("文件:"+targetPath+"复制成功");
 				})
+			}
+			else{
+				FS.createReadStream(path).pipe(FS.createWriteStream(targetPath));
+				showMessage("文件:"+targetPath+"复制成功");
 			}
 		});
 	});
