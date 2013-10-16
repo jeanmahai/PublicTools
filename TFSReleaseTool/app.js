@@ -7,6 +7,9 @@
 var PATH=require("path");
 var FS=require("fs");
 var PROCESS=require("process");
+var GUI=require("nw.gui");
+
+GUI.Window.get().showDevTools();
 
 PROCESS.on("uncaughtException",function(err){
 	showMessage("发生错误了:"+err);
@@ -82,6 +85,29 @@ function showMessage(str){
 	//console.info(str);
 }
 
+function getCurrentPath(){
+	FS.realpath(".",function(err,resolvedPath){
+		if(err) showMessage(err);
+		else showMessage("Current Path:"+resolvedPath);
+	});
+}
+
+function logSomething(content){
+	FS.realpath(".",function(err,resolvedPath){
+		if(err) console.error(err);
+		consoel.info("current path > "+resolvedPath);
+		var logFilePath=PATH.join(resolvedPath,"logs",Date.now()+".txt");
+		FS.exists(logFilePath,function(ext){
+			if(!ext){
+				
+			}
+		});
+	});
+	//判断日志文件是否存在
+	//如果不存在,则创建
+	//append content
+}
+
 function ok(){
 	var dom=document.getElementById("txtPaths");
 	var val=dom.value;
@@ -94,3 +120,6 @@ function ok(){
 		copyTo(arrPaths[i],targetPath,match);
 	}
 }
+
+getCurrentPath();
+		
