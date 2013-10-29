@@ -130,6 +130,7 @@
     <Compile Include="FileUploadManager.cs" />
     <Compile Include="HtmlViewHandler.cs" />
     <Compile Include="ImageUtility.cs" />
+    <Compile Include="IPUtility.cs" />
     <Compile Include="Json\IJson.cs" />
     <Compile Include="Json\JsonHelper.cs" />
     <Compile Include="Log\EmitterFactory.cs" />
@@ -156,6 +157,10 @@
     <Compile Include="Mail\Sender\SmtpMailSender.cs" />
     <Compile Include="Mail\Sender\SoapMailSender.cs" />
     <Compile Include="MoneyUtility.cs" />
+    <Compile Include="MSMQ\ConfigManager.cs" />
+    <Compile Include="MSMQ\MSMQAgent.cs" />
+    <Compile Include="MSMQ\MSMQDefine.cs" />
+    <Compile Include="MSMQ\MSMQReceiver.cs" />
     <Compile Include="ObjectFactory\IMetadata.cs" />
     <Compile Include="ObjectFactory\ObjectFactory.cs" />
     <Compile Include="ObjectFactory\RealObjectFactory.cs" />
