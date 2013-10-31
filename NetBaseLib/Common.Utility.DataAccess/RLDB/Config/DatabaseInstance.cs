@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace Common.Utility.DataAccess.Database.Config
 {
-    [XmlRoot("databaseList", Namespace = "http://oversea.newegg.com/DatabaseList")]
+    [XmlRoot("databaseList", Namespace = "http://www.common.com/DatabaseList")]
     public class DatabaseList
     {
         [XmlElement("database")]

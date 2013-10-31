@@ -592,7 +592,7 @@ namespace Common.Utility.Log
 
     #region Config Entity
 
-    [XmlRoot("databaseList", Namespace = "http://oversea.newegg.com/DatabaseList")]
+    [XmlRoot("databaseList", Namespace = "http://www.common.com/DatabaseList")]
     public class DatabaseList
     {
         [XmlElement("database")]

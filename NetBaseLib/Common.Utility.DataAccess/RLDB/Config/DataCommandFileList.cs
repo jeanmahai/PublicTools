@@ -10,7 +10,7 @@ namespace Common.Utility.DataAccess.Database.Config
     /// configuration that contains the list of DataCommand configuration files.
     /// This class is for internal use only.
     /// </summary>
-    [XmlRoot("dataCommandFiles", Namespace = "http://oversea.newegg.com/DbCommandFiles")]
+    [XmlRoot("dataCommandFiles", Namespace = "http://www.common.com/DbCommandFiles")]
     public class DataCommandFileList
     {
         public class DataCommandFile

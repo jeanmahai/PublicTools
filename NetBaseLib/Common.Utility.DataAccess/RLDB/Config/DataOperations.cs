@@ -8,7 +8,7 @@ using System.Data;
 
 namespace Common.Utility.DataAccess.Database.Config
 {
-    [XmlRoot("dataOperations", Namespace = "http://oversea.newegg.com/DataOperation")]
+    [XmlRoot("dataOperations", Namespace = "http://www.common.com/DataOperation")]
     public partial class DataOperations
     {
         [XmlElement("dataCommand")]
