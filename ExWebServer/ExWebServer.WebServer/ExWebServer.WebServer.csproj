@@ -57,7 +57,7 @@
     <Compile Include="Handler\IHttpHandler.cs" />
     <Compile Include="Handler\QueryUserOnline.cs" />
     <Compile Include="Handler\QueryUserOnlineList.cs" />
-    <Compile Include="Handler\SimpleCometRequestHandler.cs" />
+    <Compile Include="Handler\LoginHandler.cs" />
     <Compile Include="Handler\SimpleInstantRequestHandler.cs" />
     <Compile Include="Handler\SSO\CookieUserInfo.cs" />
     <Compile Include="Handler\SSO\JJSSOCore.cs" />

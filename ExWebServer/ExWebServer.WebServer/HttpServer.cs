@@ -93,7 +93,7 @@ namespace ExWebServer.WebServer
             Comet.CometCommand command = null;
             command = new WebServer.Comet.CometCommand(WebServer.Comet.CometCommandID.Default);
             command.Permissions = Comet.CometCommand.PERMISSION_ANONYMOUS;
-            command.RequireKeepAlive = false;
+            command.RequireKeepAlive = true;
             RegistCommandHandler(command, new WebServer.Handler.SimpleInstantRequestHandler(this, command));
 
             command = new CometCommand(WebServer.Comet.CometCommandID.QueryOnlineUser);

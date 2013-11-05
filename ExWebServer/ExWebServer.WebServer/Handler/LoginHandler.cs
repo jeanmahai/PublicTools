@@ -9,9 +9,9 @@ using ExWebServer.WebServer.HttpLib;
 
 namespace ExWebServer.WebServer.Handler
 {
-    public class SimpleCometRequestHandler : HttpHandlerBase
+    public class LoginHandler : HttpHandlerBase
     {
-        public SimpleCometRequestHandler(HttpServer server, CometCommand command) : base(server, command) { }
+        public LoginHandler(HttpServer server, CometCommand command) : base(server, command) { }
 
         public override void HandleRequest(ClientManager clmngr, HttpLib.HttpContext context)
         {

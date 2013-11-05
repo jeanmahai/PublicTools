@@ -58,7 +58,8 @@ namespace ExWebServer.WebServer.Handler
             //    output = string.Format("{0}({1})", _request.Parameters["callback"], output);
             //}
 
-            Thread.Sleep(3000);
+            int t = int.Parse(_request.Parameters["t"].Trim());
+            Thread.Sleep(t);
             output = string.Format("{0}({1})", _request.Parameters["callback"], output);
             response.Write(output);
             //response.Write("来自InstantRequestHandler");
