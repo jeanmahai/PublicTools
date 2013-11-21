@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExWebServer.SocketBase", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExWebServer.WebServer", "ExWebServer.WebServer\ExWebServer.WebServer.csproj", "{4AABAAC0-9349-4280-888A-69443F0EFB78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExWebServer.Logic", "ExWebServer.Logic\ExWebServer.Logic.csproj", "{33E7A7E4-BBEF-4D86-80A8-190DE5329458}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{4AABAAC0-9349-4280-888A-69443F0EFB78}.Release|Mixed Platforms.Build.0 = Release|x86
 		{4AABAAC0-9349-4280-888A-69443F0EFB78}.Release|x86.ActiveCfg = Release|x86
 		{4AABAAC0-9349-4280-888A-69443F0EFB78}.Release|x86.Build.0 = Release|x86
+		{33E7A7E4-BBEF-4D86-80A8-190DE5329458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33E7A7E4-BBEF-4D86-80A8-190DE5329458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33E7A7E4-BBEF-4D86-80A8-190DE5329458}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{33E7A7E4-BBEF-4D86-80A8-190DE5329458}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{33E7A7E4-BBEF-4D86-80A8-190DE5329458}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{33E7A7E4-BBEF-4D86-80A8-190DE5329458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33E7A7E4-BBEF-4D86-80A8-190DE5329458}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33E7A7E4-BBEF-4D86-80A8-190DE5329458}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{33E7A7E4-BBEF-4D86-80A8-190DE5329458}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{33E7A7E4-BBEF-4D86-80A8-190DE5329458}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

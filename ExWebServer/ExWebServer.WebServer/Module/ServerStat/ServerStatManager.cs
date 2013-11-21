@@ -88,7 +88,7 @@ namespace ExWebServer.WebServer.Module.ServerStat
 
         private SqlConnection GetDBConnection(int idx)
         {
-            string dbName = "WGLog"; ;
+            //string dbName = "WGLog"; ;
             SqlConnection conn = null;
             try
             {
@@ -102,7 +102,7 @@ namespace ExWebServer.WebServer.Module.ServerStat
 
         private string GetSqlStatement(string sqlSection, string sqlItem)
         {
-            string sqlFile = "sqlstatement";
+            //string sqlFile = "sqlstatement";
             string sql = "";
             //SubConfigure config = null;
 

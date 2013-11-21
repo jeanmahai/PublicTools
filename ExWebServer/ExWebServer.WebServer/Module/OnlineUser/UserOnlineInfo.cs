@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
 
 namespace ExWebServer.WebServer.Module.OnlineUser
 {
@@ -27,6 +28,7 @@ namespace ExWebServer.WebServer.Module.OnlineUser
 
         public DateTime LoginTime { get; set; }
         public DateTime LogoffTime { get; set; }
+        public Queue mqBodys { get; set; }
 
         public UserOnlineInfo() 
         {
@@ -57,6 +59,7 @@ namespace ExWebServer.WebServer.Module.OnlineUser
             SocketOpen = false;
             CreateTime = LastActTime = DateTime.Now;
             LoginTime = LogoffTime = _MinTime;
+            mqBodys = Queue.Synchronized(new Queue(10000));
         }
 
         public void SetPosition(int siteID,int posID)
