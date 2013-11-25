@@ -7,5 +7,7 @@ namespace ExWebServer.Logic.Users
 {
     public class UserAuth
     {
+        public void Auth()
+        { }
     }
 }
