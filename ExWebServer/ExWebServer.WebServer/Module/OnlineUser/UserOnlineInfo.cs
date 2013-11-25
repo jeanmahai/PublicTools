@@ -14,8 +14,6 @@ namespace ExWebServer.WebServer.Module.OnlineUser
 
         public int UserID { get; set; }
         public OnlineCodeValue OnlineStatusCode { get; set; }
-        public int SiteID { get; set; }
-        public int PosID { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime LastActTime { get; set; }
 
@@ -33,8 +31,6 @@ namespace ExWebServer.WebServer.Module.OnlineUser
         public UserOnlineInfo() 
         {
             UserID = 0;
-            SiteID = 0;
-            PosID = 0;
 
             LastCollectTime = _MinTime;
             CurrentOnlineTimeSecs = 0;
@@ -50,8 +46,6 @@ namespace ExWebServer.WebServer.Module.OnlineUser
                 throw new Exception("UserID cannot be negative.");
 
             UserID = uid;
-            SiteID = 0;
-            PosID = 0;
 
             LastCollectTime = _MinTime;
             CurrentOnlineTimeSecs = 0;
@@ -60,12 +54,6 @@ namespace ExWebServer.WebServer.Module.OnlineUser
             CreateTime = LastActTime = DateTime.Now;
             LoginTime = LogoffTime = _MinTime;
             mqBodys = Queue.Synchronized(new Queue(10000));
-        }
-
-        public void SetPosition(int siteID,int posID)
-        {
-            SiteID = siteID;
-            PosID = posID;
         }
 
         /// <summary>
@@ -115,7 +103,6 @@ namespace ExWebServer.WebServer.Module.OnlineUser
             onlinePlus = (int)LogoffTime.Subtract(LoginTime).TotalSeconds;
 
             return onlinePlus;
-            //SocketOpen = false;
         }
 
         /// <summary>

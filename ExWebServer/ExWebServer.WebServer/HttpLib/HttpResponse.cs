@@ -35,19 +35,12 @@ namespace ExWebServer.WebServer.HttpLib
         private void WriteToClient(int status)
         {
             const string HTTP_VERSION = "1.1";
-            //const string CARRIAGE_RETURN = "\r\n";
-            //const string DOUBLE_CARRIAGE_RETURN = "\r\n\r\n";
 
             StringBuilder sb = new StringBuilder();
 
-            //String sBuffer = "";
-            //string responseText = string.Format("hello world: {0}", DateTime.Now.ToString());
-            //int contentLength = !string.IsNullOrEmpty(ResponseText) ? ResponseText.Length : 0;
             int contentLength = Encoding.UTF8.GetByteCount(ResponseText);
-            // if Mime type is not provided set default to text/html
             if (string.IsNullOrEmpty(ContentType))
             {
-                //ContentType = "text/plain";  // Default Mime Type is text/html
                 ContentType = "text/html";
             }
 
@@ -57,7 +50,6 @@ namespace ExWebServer.WebServer.HttpLib
             sb.Append("Accept-Ranges: bytes\r\n");
             sb.Append(string.Format("Content-Length: {0}\r\n\r\n",contentLength));
 
-            //Byte[] bSendData = Encoding.ASCII.GetBytes(sb.ToString());
             sb.Append(ResponseText);
             SendToBrowser(sb.ToString());
         }
@@ -82,6 +74,14 @@ namespace ExWebServer.WebServer.HttpLib
 
         public void Write(int status,string text)
         {
+            #region Jsonp请求处理
+            HttpRequest _request = Context.Request;
+            if (_request != null && _request.Parameters != null && _request.Parameters.AllKeys.Contains("callback"))
+            {
+                text = string.Format("{0}({1})", _request.Parameters["callback"], text);
+            }
+            #endregion
+
             ResponseText = text;
             WriteToClient(status);
         }
