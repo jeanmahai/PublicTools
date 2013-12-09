@@ -36,12 +36,28 @@
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferenceLib\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\ReferenceLib\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferenceLib\System.Web.WebPages.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auth\AuthAttribute.cs" />
+    <Compile Include="Auth\AuthConfigurationSection.cs" />
+    <Compile Include="Auth\AuthMgr.cs" />
+    <Compile Include="Auth\DBAuth.cs" />
+    <Compile Include="Auth\IAuth.cs" />
     <Compile Include="Cookie\CookieConfig.cs" />
     <Compile Include="Cookie\CookieHelper.cs" />
     <Compile Include="Cookie\HighSecurityCookie.cs" />
@@ -51,6 +67,27 @@
     <Compile Include="Cookie\NormalCookie.cs" />
     <Compile Include="Cookie\SecurityCookie.cs" />
     <Compile Include="Cookie\WebCookiePersister.cs" />
+    <Compile Include="Css\CssBundleManager.cs" />
+    <Compile Include="Css\CssConfigHelper.cs" />
+    <Compile Include="Css\XmlHelper.cs" />
+    <Compile Include="Helper\MoneyHelper.cs" />
+    <Compile Include="Mvc\Error\CustomHandleErrorAttribute.cs" />
+    <Compile Include="Mvc\HtmlHelperExtensions.cs" />
+    <Compile Include="Mvc\ResultData.cs" />
+    <Compile Include="Mvc\Route\Area.cs" />
+    <Compile Include="Mvc\Route\AreaCollection.cs" />
+    <Compile Include="Mvc\Route\AreaItem.cs" />
+    <Compile Include="Mvc\Route\Constraint.cs" />
+    <Compile Include="Mvc\Route\ConstraintCollection.cs" />
+    <Compile Include="Mvc\Route\DefaultNamespace.cs" />
+    <Compile Include="Mvc\Route\IgnoreCollection.cs" />
+    <Compile Include="Mvc\Route\IgnoreItem.cs" />
+    <Compile Include="Mvc\Route\Parameter.cs" />
+    <Compile Include="Mvc\Route\ParameterCollection.cs" />
+    <Compile Include="Mvc\Route\RouteCollectionExtensions.cs" />
+    <Compile Include="Mvc\Route\RouteConfigurationSection.cs" />
+    <Compile Include="Mvc\Route\RoutingCollection.cs" />
+    <Compile Include="Mvc\Route\RoutingItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +96,7 @@
       <Name>Common.Utility</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
