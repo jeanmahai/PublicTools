@@ -42,10 +42,9 @@ namespace ExWebServer.WebServer
             string value = "";
 
             //  读取Host
-            //value = _ConfigFile.GetItem("Http", "Host");
             ParseHostListString(value);
 
-            NameValueCollection cometCommands = null;//_ConfigFile.GetSection("CometCommand");
+            NameValueCollection cometCommands = null;
             string commandJson = "";
             if (cometCommands != null && cometCommands.Count > 0)
             {

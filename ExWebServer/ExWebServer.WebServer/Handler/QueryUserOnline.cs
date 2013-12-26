@@ -29,7 +29,6 @@ namespace ExWebServer.WebServer.Handler
 
                 CompactUserIDList[] temp = new CompactUserIDList[] { new CompactUserIDList(), new CompactUserIDList(51231) };
                 string tempString = JsonHelper.ObjToJson<CompactUserIDList[]>(temp);
-                //HttpRequest request = context.Requests.Dequeue() as HttpRequest;
                 HttpRequest request = context.Request;
 
                 string uidListString = System.Web.HttpUtility.UrlDecode(request.Parameters["uid"]);
@@ -54,9 +53,7 @@ namespace ExWebServer.WebServer.Handler
                             }
                             else
                             {
-                                //result[i].L = (int)onlineInfo.OnlineCode;                   //  online code
                                 result[i].L = onlineInfo.IsOnline ? 1 : 0;                   //  online code
-                                result[i].P = onlineInfo.PosID;                          //  position
                             }
                         }
                     }

@@ -32,13 +32,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HttpWebAdapters">
-      <HintPath>..\..\packages\SolrNet.0.3.1.0\lib\HttpWebAdapters.dll</HintPath>
+      <HintPath>..\ReferenceLib\HttpWebAdapters.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\..\packages\SolrNet.0.3.1.0\lib\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <HintPath>..\ReferenceLib\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="SolrNet">
-      <HintPath>..\..\packages\SolrNet.0.3.1.0\lib\SolrNet.dll</HintPath>
+      <HintPath>..\ReferenceLib\SolrNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />

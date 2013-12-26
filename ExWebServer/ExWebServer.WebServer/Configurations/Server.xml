@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Config>
+  <!--允许方式，Console-控制台；Service-Windows服务。-->
+  <RunWays><![CDATA[Console]]></RunWays>
+  <!--监听端口-->
+  <Port><![CDATA[800]]></Port>
+  <!--信任的访问Host-->
+  <HostList>
+    <Host><![CDATA[127.0.0.1]]></Host>
+    <Host><![CDATA[svc.exwebserver.com]]></Host>
+  </HostList>
+  <!--下发消息的线程数-->
+  <SendThreads><![CDATA[10]]></SendThreads>
+  <!--允许的最大请求内容-->
+  <MaxPostLength><![CDATA[4194304]]></MaxPostLength>
+  <!--允许的请求头行数-->
+  <MaxHeaderLines><![CDATA[30]]></MaxHeaderLines>
+  <!--允许的最大请求队列-->
+  <MaxQueuedRequests><![CDATA[5]]></MaxQueuedRequests>
+</Config>

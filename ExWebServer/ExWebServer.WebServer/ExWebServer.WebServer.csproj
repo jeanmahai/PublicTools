@@ -53,15 +53,11 @@
     <Compile Include="Comet\CometCommand.cs" />
     <Compile Include="Comet\CometCommandHandlerPipeline.cs" />
     <Compile Include="Comet\CometCommandID.cs" />
+    <Compile Include="Handler\Default.cs" />
     <Compile Include="Handler\HttpHandlerBase.cs" />
     <Compile Include="Handler\IHttpHandler.cs" />
     <Compile Include="Handler\QueryUserOnline.cs" />
     <Compile Include="Handler\QueryUserOnlineList.cs" />
-    <Compile Include="Handler\LoginHandler.cs" />
-    <Compile Include="Handler\SimpleInstantRequestHandler.cs" />
-    <Compile Include="Handler\SSO\CookieUserInfo.cs" />
-    <Compile Include="Handler\SSO\JJSSOCore.cs" />
-    <Compile Include="Handler\SSO\SSOCore.cs" />
     <Compile Include="HttpLib\ByteRange.cs" />
     <Compile Include="HttpLib\ConnectionMode.cs" />
     <Compile Include="HttpLib\HttpClient.cs" />
@@ -75,7 +71,7 @@
     <Compile Include="HttpLib\RequestError.cs" />
     <Compile Include="HttpServer.cs" />
     <Compile Include="HttpServerConfigure.cs" />
-    <Compile Include="Module\OnlineNotification\OnlineNotifySvc.cs" />
+    <Compile Include="Module\ConfigEntity\ServerEntity.cs" />
     <Compile Include="Module\OnlineUser\CompactUserIDList.cs" />
     <Compile Include="Module\OnlineUser\CompactUserOnlineList.cs" />
     <Compile Include="Module\OnlineUser\OnlineCodeValue.cs" />
@@ -83,14 +79,17 @@
     <Compile Include="Module\OnlineUser\UserOnlineStatus.cs" />
     <Compile Include="Module\OnlineUser\UserOnlineStatusCompact.cs" />
     <Compile Include="Module\ServerStat\ServerStatManager.cs" />
-    <Compile Include="Module\ServerStat\SiteOnlineStat.cs" />
-    <Compile Include="Module\ServerStat\UserOnlineTimeInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\ConfigHelper.cs" />
     <Compile Include="Utility\Encryption\HashEncrypt.cs" />
     <Compile Include="Utility\Encryption\RC4Encrypt.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExWebServer.Logic\ExWebServer.Logic.csproj">
+      <Project>{33E7A7E4-BBEF-4D86-80A8-190DE5329458}</Project>
+      <Name>ExWebServer.Logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ExWebServer.SocketBase\ExWebServer.SocketBase.csproj">
       <Project>{DB56F8AF-0784-4E99-88B8-21C5E18DCD51}</Project>
       <Name>ExWebServer.SocketBase</Name>
@@ -98,6 +97,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configurations\Server.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

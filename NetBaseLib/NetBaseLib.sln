@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Utility.DataAccess",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Utility.Web", "Common.Utility.Web\Common.Utility.Web.csproj", "{0C311B70-3D3D-4133-B54C-2E04C354A196}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Utility.WCF", "Common.Utility.WCF\Common.Utility.WCF.csproj", "{8171E1C6-C2D7-4D4C-86C1-B2D4CA8F441C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{0C311B70-3D3D-4133-B54C-2E04C354A196}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C311B70-3D3D-4133-B54C-2E04C354A196}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C311B70-3D3D-4133-B54C-2E04C354A196}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8171E1C6-C2D7-4D4C-86C1-B2D4CA8F441C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8171E1C6-C2D7-4D4C-86C1-B2D4CA8F441C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8171E1C6-C2D7-4D4C-86C1-B2D4CA8F441C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8171E1C6-C2D7-4D4C-86C1-B2D4CA8F441C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
