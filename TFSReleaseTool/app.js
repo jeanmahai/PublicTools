@@ -13,7 +13,7 @@ var PROCESS=require("process");
 //GUI.Window.get().showDevTools();
 
 PROCESS.on("uncaughtException",function(err){
-	showMessage("发生错误了:"+err);
+	showMessage("<span style='color:red;'>发生错误了:</span>"+err);
 });
 
 function getPathsArr(strs){
@@ -51,7 +51,7 @@ function checkDir(arrDir,index,callback){
 		}
 		else{
 			FS.mkdir(path);
-			showMessage("创建目录成功:"+path);
+			//showMessage("创建目录成功:"+path);
 			checkDir(arrDir,index+1,callback);
 		}
 	});
@@ -62,7 +62,7 @@ function copyTo(path,targetPath,match){
 	
 	var matchPath=path.split(match)[1];
 	if(!matchPath) {
-		showMessage("no matched path");
+		showMessage("<span style='color:red;'>no matched path</span>");
 		return;
 	}
 	targetPath=PATH.join(targetPath,matchPath);
@@ -72,12 +72,12 @@ function copyTo(path,targetPath,match){
 			if(ext) {
 				FS.unlink(targetPath,function(){
 					FS.createReadStream(path).pipe(FS.createWriteStream(targetPath));
-					showMessage("复制文件成功:"+targetPath);
+					showMessage("<span style='color:green;'>复制文件成功:</span>"+targetPath);
 				})
 			}
 			else{
 				FS.createReadStream(path).pipe(FS.createWriteStream(targetPath));
-				showMessage("复制文件成功:"+targetPath);
+				showMessage("<span style='color:green;'>复制文件成功:</span>"+targetPath);
 			}
 		});
 	});

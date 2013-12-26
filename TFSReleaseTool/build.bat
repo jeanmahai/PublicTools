@@ -27,6 +27,7 @@ xcopy %cd%\*.png %nodebobAppFolder% /s/r/y
 xcopy %cd%\*.gif %nodebobAppFolder% /s/r/y
 xcopy %cd%\*.jpeg %nodebobAppFolder% /s/r/y
 xcopy %cd%\*.json %nodebobAppFolder% /s/r/y
+
 echo ================================
 echo call build.bat ....
 cd %buildPath%

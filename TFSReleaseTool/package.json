@@ -1,8 +1,8 @@
 {
     "main":"index.html",
-    "name":"test",
+    "name":"TFS publish quickly",
     "window":{
-        "toolbar":true,
+        "toolbar":false,
 		"frame":true,
 		"resizable":false
     }
