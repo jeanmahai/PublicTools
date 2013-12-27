@@ -2,7 +2,7 @@
     "main":"index.html",
     "name":"TFS publish quickly",
     "window":{
-        "toolbar":false,
+        "toolbar":true,
 		"frame":true,
 		"resizable":false
     }
