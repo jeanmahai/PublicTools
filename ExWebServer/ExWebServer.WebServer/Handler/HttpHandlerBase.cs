@@ -12,6 +12,8 @@ namespace ExWebServer.WebServer.Handler
         public HttpServer Server { get; set; }
         public CometCommand Command { get; set; }
 
+        public HttpHandlerBase() { }
+
         public HttpHandlerBase(HttpServer server, CometCommand command)
         {
             if (server == null)

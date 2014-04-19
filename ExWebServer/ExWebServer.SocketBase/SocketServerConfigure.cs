@@ -87,44 +87,5 @@ namespace ExWebServer.SocketBase
 
             return TrustRemoteIP != null ? TrustRemoteIP.Count : 0;
         }
-
-        public virtual bool LoadConfig(string configFile)
-        {
-            return true;
-            //if (string.IsNullOrEmpty(configFile))
-            //    configFile = "config.xml";
-
-            //string fullPath = string.Format("{0}\\{1}", _BasePath, configFile);
-
-            //_ConfigFile = SubConfigureManager.GetConfigureFromAbsolutePath(configFile);
-            //if (_ConfigFile == null)
-            //    return false;
-
-            //string value = "";
-            //try
-            //{
-            //    ServerName = _ConfigFile.GetItem("Socket", "Server");
-            //    if (string.IsNullOrEmpty(ServerName))
-            //        return false;
-
-            //    Port = Convert.ToInt32(_ConfigFile.GetItem("Socket", "Port"));
-
-            //    Backlog = Convert.ToInt32(_ConfigFile.GetItem("Socket", "Backlog"));
-            //    if (Backlog < DEFAULT_BACKLOG)
-            //        Backlog = DEFAULT_BACKLOG;
-
-
-            //    SendThreads = Convert.ToInt32(_ConfigFile.GetItem("Socket", "SendThread"));
-            //    if (SendThreads < DEFAULT_SENDTHREAD)
-            //        SendThreads = DEFAULT_SENDTHREAD;
-
-            //    value = _ConfigFile.GetItem("Socket", "TrustIP");
-            //    ParseTrustIPString(value);
-
-            //}
-            //catch { }
-
-            //return true;
-        }
     }
 }

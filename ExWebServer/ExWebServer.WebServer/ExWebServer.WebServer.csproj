@@ -50,14 +50,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BussinessException.cs" />
     <Compile Include="Comet\CometCommand.cs" />
     <Compile Include="Comet\CometCommandHandlerPipeline.cs" />
     <Compile Include="Comet\CometCommandID.cs" />
     <Compile Include="Handler\Default.cs" />
     <Compile Include="Handler\HttpHandlerBase.cs" />
     <Compile Include="Handler\IHttpHandler.cs" />
-    <Compile Include="Handler\QueryUserOnline.cs" />
-    <Compile Include="Handler\QueryUserOnlineList.cs" />
+    <Compile Include="Handler\ValidationUserKey.cs" />
     <Compile Include="HttpLib\ByteRange.cs" />
     <Compile Include="HttpLib\ConnectionMode.cs" />
     <Compile Include="HttpLib\HttpClient.cs" />

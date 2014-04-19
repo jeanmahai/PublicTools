@@ -68,6 +68,7 @@
     <Compile Include="BatchAction\BatchActionItem.cs" />
     <Compile Include="BatchAction\BatchActionManager.cs" />
     <Compile Include="BatchAction\BatchActionResult.cs" />
+    <Compile Include="BusinessException.cs" />
     <Compile Include="Cache\CacheFactory.cs" />
     <Compile Include="Cache\CacheKeyGenerator.cs" />
     <Compile Include="Cache\CacheSection.cs" />

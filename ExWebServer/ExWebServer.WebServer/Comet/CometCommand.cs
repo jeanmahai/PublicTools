@@ -47,17 +47,10 @@ namespace ExWebServer.WebServer.Comet
 
             command = command.Trim().ToLower();
 
-            if (command.CompareTo("querynotification") == 0)
-                return new CometCommand(CometCommandID.QueryNotification);
-
             if (command.CompareTo("default") == 0)
                 return new CometCommand(CometCommandID.Default);
-
-            if (command.CompareTo("queryonlineuser") == 0)
-                return new CometCommand(CometCommandID.QueryOnlineUser);
-
-            if (command.CompareTo("queryonlineuserlist") == 0)
-                return new CometCommand(CometCommandID.QueryOnlineUserList);
+            if (command.CompareTo("validationuserkey") == 0)
+                return new CometCommand(CometCommandID.ValidationUserKey);
 
             return new CometCommand();
         }
@@ -94,19 +87,9 @@ namespace ExWebServer.WebServer.Comet
 
         public override string ToString()
         {
-            switch (CommandID)
-            {
-                case CometCommandID.NA:
-                    return "";
-                case CometCommandID.QueryNotification:
-                    return "QueryNotification";
-                case CometCommandID.QueryOnlineUser:
-                    return "QueryOnlineUser";
-                case CometCommandID.QueryOnlineUserList:
-                    return "QueryOnlineUserList";
-                default:
-                    return "";
-            }
+            if (CommandID == CometCommandID.NA)
+                return "";
+            return CommandID.ToString();
         }
     }
 }
