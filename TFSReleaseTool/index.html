@@ -5,21 +5,26 @@
 	<style type="text/css">
 		
 		*{padding:0px;margin:0px;overflow:hidden;}
+		body{font-size:84.5%;}
 		input,label,button,div{padding:5px;}
 		button{min-width:100px;}
 		textarea{padding:3px;overflow-x:hidden}
-		#divMsg{height:270px;overflow-y:scroll;}
+		#divMsg{overflow-y:scroll;}
 	</style>
+	<script type="text/javascript" src="public/javascripts/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
-<div>
-	<label>target path:</label><input type="text" id="txtTargetPath" value="C:\Users\jm96\Desktop\website"/>
-	<label>match:</label><input type="text" id="txtMatch" value="WebUI"/>
-	<button onclick="ok()">ok</button></div>
-<div>
-	<textarea id="txtPaths" style="width:99%;height:100px;"></textarea>
-</div>
-<div id="divMsg" ></div>
+	<div>
+		<label>target path:</label><input type="text" id="txtTargetPath" value="C:\Users\jm96\Desktop\website"/>
+		<label>match:</label><input type="text" id="txtMatch" value="WebUI"/>
+		<button onclick="ok()">ok</button></div>
+	<div>
+		<textarea id="txtPaths" style="width:99%;height:100px; overflow:scroll;"></textarea>
+	</div>
+	<div id="divMsg" ></div>
+	<script type="text/javascript">
+		$("#divMsg").height($(document).height()-$("body>div:first").outerHeight()-$("body>div:eq(1)").outerHeight()-10);
+	</script>
 </body>
 </html>
