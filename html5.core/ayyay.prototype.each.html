@@ -1,7 +1,8 @@
 <script src="string.format.js"></script>
 <script src="array.prototype.each.js"></script>
 <script>
-	["a","b"].each(function(i,item){
-		document.write(String.format("index={0},value={1}<br/>",i,item));
+	["a","b"].each(function(i){
+		var me=this;
+		document.write(String.format("index={0},value={1}<br/>",i,me));
 	});
 </script>
