@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading;
+using System.Reflection;
+using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,8 +11,9 @@ using ExWebServer.SocketBase.Client;
 using ExWebServer.SocketBase.Server;
 using ExWebServer.SocketBase.Protocals;
 using ExWebServer.WebServer.Module.OnlineUser;
-using ExWebServer.Logic.Auth;
 using ExWebServer.WebServer.Utility;
+using ExWebServer.WebServer.Handler;
+using ExWebServer.Logic.Auth;
 //using WebCommon.Messaging.MQHelper;
 
 namespace ExWebServer.WebServer
@@ -175,10 +178,12 @@ namespace ExWebServer.WebServer
 
         #endregion
 
-        public override bool LoadConfig()
+        public bool LoadConfig()
         {
             var configs =  ConfigHelper.LoadServerConfig();
             _Config = new HttpServerConfigure();
+
+            _Config.InitCommand(configs.CommandList);
 
             //设置主机头
             _Config.HostList = configs.HostList;
@@ -198,7 +203,6 @@ namespace ExWebServer.WebServer
         /// <returns></returns>
         private bool LoadCometCommands()
         {
-
             if (_CometCommands == null)
                 _CometCommands = new Dictionary<WebServer.Comet.CometCommandID, WebServer.Comet.CometCommandHandlerPipeline>(50);
             else
@@ -206,40 +210,36 @@ namespace ExWebServer.WebServer
 
             if (_Config.ComandList != null && _Config.ComandList.Count > 0)
             {
-                foreach (Comet.CometCommand cmd in _Config.ComandList)
+                foreach (CometCommand cmd in _Config.ComandList)
                 {
-                    switch (cmd.CommandID)
-                    {
-                        case CometCommandID.Default:
-                            RegistCommandHandler(cmd, new WebServer.Handler.Default(this, cmd));
-                            break;
-                        case CometCommandID.QueryOnlineUser:
-                            RegistCommandHandler(cmd, new WebServer.Handler.QueryUserOnline(this, cmd));
-                            break;
-                        case CometCommandID.QueryOnlineUserList:
-                            RegistCommandHandler(cmd, new WebServer.Handler.QueryUserOnlineList(this, cmd));
-                            break;
-                    }
+                    RegistCommandHandler(cmd, ParseCometCommand(cmd));
                 }
             }
 
-            Comet.CometCommand command = null;
-            command = new WebServer.Comet.CometCommand(WebServer.Comet.CometCommandID.Default);
-            command.Permissions = Comet.CometCommand.PERMISSION_ANONYMOUS;
-            command.RequireKeepAlive = true;
-            RegistCommandHandler(command, new WebServer.Handler.Default(this, command));
-
-            command = new CometCommand(WebServer.Comet.CometCommandID.QueryOnlineUser);
-            command.Permissions = Comet.CometCommand.PERMISSION_ANONYMOUS;
-            command.RequireKeepAlive = false;
-            RegistCommandHandler(command, new WebServer.Handler.QueryUserOnline(this, command));
-
-            command = new CometCommand(WebServer.Comet.CometCommandID.QueryOnlineUserList);
-            command.Permissions = Comet.CometCommand.PERMISSION_ANONYMOUS;
-            command.RequireKeepAlive = false;
-            RegistCommandHandler(command, new WebServer.Handler.QueryUserOnlineList(this, command));
-
             return true;
+        }
+        /// <summary>
+        /// 根据命令实例化管道处理命令类
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
+        private IHttpHandler ParseCometCommand(CometCommand cmd)
+        {
+            string currAssemblyName = Process.GetCurrentProcess().MainModule.FileName;
+            currAssemblyName = currAssemblyName.Substring(currAssemblyName.LastIndexOf("\\") + 1).Replace(".vshost", "");
+            Assembly assembly = Assembly.LoadFrom(currAssemblyName);
+            Type[] assemblyAllTypes = assembly.GetTypes();
+            Type currCommand = null;
+            foreach (Type type in assemblyAllTypes)
+            {
+                if (type.Name == cmd.ToString())
+                {
+                    currCommand = type;
+                    break;
+                }
+            }
+            IHttpHandler commandHandler = Activator.CreateInstance(currCommand) as IHttpHandler;
+            return commandHandler;
         }
 
         /// <summary>
@@ -484,8 +484,6 @@ namespace ExWebServer.WebServer
                 UnRegistUser(clmngr);
 
             base.ShutdownClient(clmngr);
-
-            //Console.Write("\r(Shut)Conn:{0}  Users:{1}    Check:{2}    Req:{3}          \r", _Clients.Count, _Users.Count, _MonitorCheckSuccessTimes, _RequestTimes);
         }
 
         /// <summary>
@@ -521,6 +519,7 @@ namespace ExWebServer.WebServer
         public override bool HandleRequest(ClientManager clmngr, ISocketMessage message)
         {
             bool goRecieving = false;
+            HttpContext context = null;
             try
             {
                 _RequestTimes++;
@@ -545,7 +544,7 @@ namespace ExWebServer.WebServer
                         return goRecieving;
                     }
 
-                    HttpContext context = new HttpContext(this, clmngr, request);
+                    context = new HttpContext(this, clmngr, request);
 
                     CometCommand cometCmd = handlePipeline.Command;
                     request.Command = cometCmd;
@@ -576,7 +575,6 @@ namespace ExWebServer.WebServer
                             }
                         }
                     }
-                    //TestResponse(context);
                 }
                 else
                 {
@@ -585,8 +583,20 @@ namespace ExWebServer.WebServer
             }
             catch (Exception ex)
             {
-                ShutdownClient(clmngr);
-                Console.WriteLine(string.Format("Error occured when HandleRequest:{0} ", ex.Message));
+                if (ex is BussinessException)
+                {
+                    ExceptionResult result = new ExceptionResult() 
+                    {
+                        ErrorCode = "B10001",
+                        ErrorMessage = ex.Message
+                    };
+                    context.Response.Write(Common.Utility.Json.JsonHelper.ObjToJson(result));
+                }
+                else
+                {
+                    ShutdownClient(clmngr);
+                    Console.WriteLine(string.Format("Error occured when HandleRequest:{0} ", ex.Message));
+                }
             }
             finally { }
             return goRecieving;

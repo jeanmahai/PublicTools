@@ -17,4 +17,9 @@
   <MaxHeaderLines><![CDATA[30]]></MaxHeaderLines>
   <!--允许的最大请求队列-->
   <MaxQueuedRequests><![CDATA[5]]></MaxQueuedRequests>
+  <!--服务器支持的请求协议-->
+  <CommandList>
+    <Command><![CDATA[{"CommandID":10000,"Permissions":1,"RequireKeepAlive":true}]]></Command>
+    <Command><![CDATA[{"CommandID":10001,"Permissions":1,"RequireKeepAlive":true}]]></Command>
+  </CommandList>
 </Config>

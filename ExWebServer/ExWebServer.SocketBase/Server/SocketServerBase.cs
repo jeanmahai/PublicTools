@@ -28,20 +28,6 @@ namespace ExWebServer.SocketBase.Server
         private MessageSender[] MsgDeliver = null;
         private static readonly object OutingMsgLock = new object();
 
-        /// <summary>
-        /// 使用默认的config.xml来加载服务器设置
-        /// </summary>
-        /// <returns></returns>
-        public virtual bool LoadConfig()
-        {
-            string configFile = "config.xml";
-            _Config = new SocketServerConfigure();
-            if (!_Config.LoadConfig(configFile))
-                return false;
-
-            return true;
-        }
-
         public virtual void DebugMessage(string msg)
         {
             try

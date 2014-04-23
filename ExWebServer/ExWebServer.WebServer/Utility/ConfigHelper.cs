@@ -28,6 +28,12 @@ namespace ExWebServer.WebServer.Utility
             {
                 result.HostList.Add(string.Format("{0}:{1}", item.Value.Trim(), result.Port));
             }
+            result.CommandList = new List<string>();
+            XElement commandList = root.Element("CommandList");
+            foreach (XElement item in commandList.Elements("Command"))
+            {
+                result.CommandList.Add(item.Value.Trim());
+            }
             return result;
         }
     }

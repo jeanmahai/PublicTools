@@ -9,6 +9,5 @@ namespace ExWebServer.SocketBase
         int Backlog { get; set; }
         int SendThreads { get; set; }
         HashSet<long> TrustRemoteIP { get; set; }
-        bool LoadConfig(string configFile);
     }
 }

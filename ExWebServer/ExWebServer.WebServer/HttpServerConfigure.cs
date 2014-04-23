@@ -32,39 +32,27 @@ namespace ExWebServer.WebServer
             return HostList.Count;
         }
 
-        public override bool LoadConfig(string configFile)
+        /// <summary>
+        /// 初始化服务器支持的协议
+        /// </summary>
+        /// <param name="commandList"></param>
+        public void InitCommand(List<string> commandList)
         {
-            bool result = base.LoadConfig(configFile);
-
-            if (!result)
-                return result;
-
-            string value = "";
-
-            //  读取Host
-            ParseHostListString(value);
-
-            NameValueCollection cometCommands = null;
-            string commandJson = "";
-            if (cometCommands != null && cometCommands.Count > 0)
+            string commandJson = string.Empty;
+            ComandList = new List<CometCommand>(commandList.Count);
+            for (int i = 0; i < commandList.Count; i++)
             {
-                ComandList = new List<CometCommand>(cometCommands.Count);
-                for (int i = 0; i < cometCommands.Count; i++)
+                commandJson = commandList[i];
+                try
                 {
-                    commandJson = cometCommands[i];
-                    try
+                    CometCommand command = JsonHelper.JsonToObj<CometCommand>(commandJson);
+                    if (command != null)
                     {
-                        CometCommand command = JsonHelper.JsonToObj<CometCommand>(commandJson);
-                        if (command != null)
-                        {
-                            ComandList.Add(command);
-                        }
+                        ComandList.Add(command);
                     }
-                    catch { }
                 }
+                catch { }
             }
-
-            return result;
         }
     }
 }

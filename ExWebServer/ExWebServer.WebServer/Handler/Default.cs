@@ -10,6 +10,7 @@ namespace ExWebServer.WebServer.Handler
 {
     public class Default : HttpHandlerBase
     {
+        public Default() { }
         public Default(HttpServer server, CometCommand command) : base(server, command) { }
 
         public override void HandleRequest(ClientManager clmngr, HttpContext context)

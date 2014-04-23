@@ -35,5 +35,9 @@ namespace ExWebServer.WebServer.Module.ConfigEntity
         /// 允许的最大请求队列
         /// </summary>
         public int MaxQueuedRequests { get; set; }
+        /// <summary>
+        /// 服务器支持的请求协议
+        /// </summary>
+        public List<string> CommandList { get; set; }
     }
 }

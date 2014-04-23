@@ -41,14 +41,14 @@ namespace ExWebServer.WebServer.HttpLib
             int contentLength = Encoding.UTF8.GetByteCount(ResponseText);
             if (string.IsNullOrEmpty(ContentType))
             {
-                ContentType = "text/html";
+                ContentType = "text/json; charset=utf-8";
             }
 
             sb.Append(string.Format("HTTP/{0} {1}\r\n", HTTP_VERSION, status, ""));
             sb.Append(string.Format("Server: {0}\r\n",Context.Server._Config.ServerName));
             sb.Append(string.Format("Content-Type: {0}\r\n", ContentType));
             sb.Append("Accept-Ranges: bytes\r\n");
-            sb.Append(string.Format("Content-Length: {0}\r\n\r\n",contentLength));
+            sb.Append(string.Format("Content-Length: {0}\r\n\r\n", contentLength));
 
             sb.Append(ResponseText);
             SendToBrowser(sb.ToString());
