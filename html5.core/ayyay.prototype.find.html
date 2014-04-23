@@ -1,0 +1,12 @@
+<script src="string.format.js"></script>
+<script src="array.prototype.find.js"></script>
+<script src="array.prototype.each.js"></script>
+<script>
+	var result=["a","b"].find(function(item){
+		if(item=="a") return true;
+		return false;
+	});
+	result.each(function(index,item){
+		document.write(item);
+	});
+</script>
