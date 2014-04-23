@@ -3,3 +3,7 @@ bin/
 *.suo
 _ReSharper*/
 NodeJS/~$note.docx
+
+TFSReleaseTool/.idea
+TFSReleaseTool/nw.exe - Shortcut.lnk
+TFSReleaseTool/release
