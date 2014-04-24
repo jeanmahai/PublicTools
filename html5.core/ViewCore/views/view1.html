@@ -1,19 +1,25 @@
-<!--@style src=test.css-->
-<!--@style src=test2.css-->
-<!--@script src=test.js-->
-<!--@script src=test2.js-->
-<!--@section src=test.html-->
-<!--@section src=test2.html-->
+<!--@master src=master.html-->
+<!--@style src=style/test.css-->
+<!--@style src=style/test2.css-->
+<!--@script src=script/test.js-->
+<!--@script src=script/test2.js-->
+<!--@section src=section/test.html-->
+<!--@section src=section/test2.html-->
 <ul>
-	<li>Name:@context.Name</li>
-	<li>Sex:@if(@context.Sex==0) ÄÐ @else Å®</li>
+    <li>Name:@context.Name</li>
+    <li>Sex:@if(@context.Sex==0) ç”· @else å¥³</li>
 </ul>
 <ul>
-	@for(var i=0;i<@context.List.length;i++){
-		<li>@context.List[i]</li>
-	}
+    @for(var i=0;i<@context.List.length;i++){
+    <li>@context.List[i]</li>
+    }
 </ul>
 <form>
-	<input model="@context.Name"/>
+    <input model="@context.Name"/>
 </form>
+<script type="text/javascript">
+    function hello() {
+        console.info("hello world");
+    }
+</script>
 <!--@context src=handler.aspx duration=5000 cache=true -->
