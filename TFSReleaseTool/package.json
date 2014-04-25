@@ -1,9 +1,0 @@
-{
-    "main":"index.html",
-    "name":"TFS publish quickly",
-    "window":{
-        "toolbar":true,
-		"frame":true,
-		"resizable":false
-    }
-}
