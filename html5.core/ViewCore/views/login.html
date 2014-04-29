@@ -1,0 +1,25 @@
+<!--@script src=script/customer.js-->
+<div>
+    <form>
+        <ul>
+            <li>Name:<input type="text" name="Name"/></li>
+            <li>Password:<input type="text" name="Password"/></li>
+            <li>
+                <button>Login</button>
+            </li>
+        </ul>
+    </form>
+</div>
+<script type="text/javascript">
+    function onLogin() {
+        var name = $("[name=Name]").val();
+        var psw = $("[name=Password]").val();
+        customer.login(name, psw).then(function (name) {
+            alert("welcome " + name);
+        }).catch(function (msg) {
+                    alert(msg);
+                });
+        return false;
+    }
+    $("button").bind("click", onLogin);
+</script>
