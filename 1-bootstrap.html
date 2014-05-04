@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:ng="http://angularjs.org">
+<html>
 <head>
-    <title></title>
+    <title>使用代码实例化</title>
     <script type="text/javascript" src="angular.js"></script>
-    <script type="text/javascript" src="_http.js"></script>
 </head>
 <body>
+    <div>1+1={{1+1}}</div>
+
     <script type="text/javascript">
-        var app=angular.module("")
+        angular.module("demo",[]);
+        angular.bootstrap(document,["demo"]);
     </script>
 </body>
 </html>
