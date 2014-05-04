@@ -2,7 +2,6 @@
  * Created by jm96 on 14-4-30.
  */
 //angular js
-//N.config.js
 
 //N
 (function (ns) {
@@ -34,7 +33,7 @@
 
 })("N");
 
-//angular extend
+//angular extend $http2,custom ajax ,contain custom headers and result
 (function(){
     //$http2
 

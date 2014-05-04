@@ -4,5 +4,5 @@
 N.config={
     name:"AppDemo",
     language:"zh-cn",
-    viewParent:"document.body"
+    debug:true
 };
