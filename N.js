@@ -32,9 +32,3 @@
     window[ns].removeData=removeData;
 
 })("N");
-
-//angular extend $http2,custom ajax ,contain custom headers and result
-(function(){
-    //$http2
-
-})();
