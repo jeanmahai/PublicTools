@@ -4,7 +4,8 @@
     <title>自定义http header</title>
     <script type="text/javascript" src="angular.js"></script>
 </head>
-<body >
+<body ng-controller="Test">
+{{random}}--{{value}}
 <script type="text/javascript">
     var app=angular.module("app",[]);
 
@@ -16,13 +17,21 @@
     */
 
     //method 2 1.1.x+
+
     app.factory("httpRequestInterceptor",function(){
         return{
-            request:function(config){
+            'request': function(config) {
+                // do something on success
                 config.headers={
-                    "Test":"test"
+                    "test":"test"
                 };
-                return config;
+                return config || $q.when(config);
+            },
+            'response': function(response) {
+                // do something on success
+                console.info(response.headers("test"));
+                console.info(response.headers("test2"));
+                return response || $q.when(response);
             }
         };
     });
@@ -30,9 +39,13 @@
         $httpProvider.interceptors.push("httpRequestInterceptor");
     });
 
+    //以上两种方式都能正确的写入默认的header信息,建议使用第二中.
     //
-    app.controller("Test",["$scope",function($scope){
-        $scope.random=Math.random;
+    app.controller("Test",["$scope","$http",function($scope,$http){
+        $scope.random=Math.random();
+        $http.get("service/Handler.ashx").success(function(res){
+            $scope.value=res;
+        });
     }]);
 
     angular.bootstrap(document,["app"]);
