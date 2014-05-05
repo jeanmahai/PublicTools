@@ -5,9 +5,18 @@
     <script type="text/javascript" src="angular.js"></script>
     <script type="text/javascript" src="_http.js"></script>
 </head>
-<body>
+<body ng-controller="TestCtrl">
+    <button ng-click="test()">kjdsf</button>
     <script type="text/javascript">
-        var app=angular.module("")
+        var app=angular.module("demo",[]);
+
+        app.controller("TestCtrl",["_http","$scope",function(_http,$scope){
+            $scope.test=function(){
+                _http.test();
+            };
+        }]);
+
+        angular.bootstrap(document,["demo"]);
     </script>
 </body> 
 </html>

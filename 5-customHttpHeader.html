@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>自定义http header</title>
+    <script type="text/javascript" src="angular.js"></script>
+</head>
+<body >
+<script type="text/javascript">
+    var app=angular.module("app",[]);
+
+    //method 1 1.0.x
+    /*
+    app.run(function($http){
+        $http.defaults.headers.common["sdf"]="sdf";
+    });
+    */
+
+    //method 2 1.1.x+
+    app.factory("httpRequestInterceptor",function(){
+        return{
+            request:function(config){
+                config.headers={
+                    "Test":"test"
+                };
+                return config;
+            }
+        };
+    });
+    app.config(function($httpProvider){
+        $httpProvider.interceptors.push("httpRequestInterceptor");
+    });
+
+    //
+    app.controller("Test",["$scope",function($scope){
+        $scope.random=Math.random;
+    }]);
+
+    angular.bootstrap(document,["app"]);
+</script>
+</body>
+</html>

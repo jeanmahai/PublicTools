@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>自定义provider</title>
+    <script type="text/javascript" src="angular.js"></script>
+</head>
+<body ng-controller="Test">
+    <button ng-click="display()">{{value}}</button>
+    <div>{{random()}}</div>
+    <div>{{random()}}</div>
+    <script type="text/javascript">
+        //custom provider
+        angular.module("CustomProvider",[])
+                .provider("Custom",function(){
+                    var obj={
+                        text:"hello world",
+                        display:function(){
+                            console.info(this.text);
+                        }
+                    };
+                    this.$get=function(){
+                        return obj;
+                    };
+                });
+
+        var app=angular.module("app",["CustomProvider"]);
+
+        app.controller("Test",["Custom","$scope",function(Custom,$scope){
+            $scope.display=function(){
+                Custom.display();
+            };
+            $scope.value=Custom.text;
+            $scope.random=Math.random;
+        }]);
+
+        angular.bootstrap(document,["app"]);
+    </script>
+</body>
+</html>
