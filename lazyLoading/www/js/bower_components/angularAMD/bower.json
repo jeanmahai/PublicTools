@@ -1,0 +1,8 @@
+{
+    "name": "angularAMD",
+    "version": "0.1.0",
+    "main": "./angularAMD.js",
+    "dependencies": {
+        "angular": "~1.2.0"
+    }
+}
