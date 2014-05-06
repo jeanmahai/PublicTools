@@ -15,3 +15,18 @@
         <td>{{item.age}}</td>
     </tr>
 </table>
+<h6>client cookies</h6>
+<ul>
+    <li>Key:<input type="text" ng-model="keyval.key"/>{{keyval.key}}</li>
+    <li>Value:<input type="text" ng-model="keyval.val"/>{{keyval.val}}</li>
+    <li>
+        <button ng-click="setCookie()">set</button>
+        <button ng-click="getCookie()">get</button>
+    </li>
+</ul>
+<h6>remoting cookies</h6>
+<ul>
+    <li>
+        <button ng-click="getRemoteCookie()">getRemoteCookie</button>{{removeCookie}}
+    </li>
+</ul>

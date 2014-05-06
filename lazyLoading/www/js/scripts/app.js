@@ -1,9 +1,14 @@
 /**
  * Created by Jeanma on 14-5-5.
  */
-define(["angularAMD","angular-route","ng-grid"],function(angularAMD){
+define(["angularAMD","angular-route","ng-grid","angular-cookies","N"],function(angularAMD){
 
-    var app=angular.module("app",["ngRoute","ngGrid"]);
+    var app=angular.module("app",["ngRoute","ngGrid","ngCookies","NProvider"]);
+
+    //config $N
+    app.run(function($N){
+        $N.showLoading=true;
+    });
 
     //config url route
     app.config(["$routeProvider",function($routeProvider){
@@ -20,7 +25,7 @@ define(["angularAMD","angular-route","ng-grid"],function(angularAMD){
     }]);
 
     //interceptor http
-    app.factory("httpInterceptor",function(){
+    app.factory("httpInterceptor",["$N",function($N){
         return{
             'request': function(config) {
                 // do something on success
@@ -29,8 +34,7 @@ define(["angularAMD","angular-route","ng-grid"],function(angularAMD){
                     "x-newegg-mobile-cookie":window.localStorage.getItem("x-newegg-mobile-cookie")
                 };
                 //处理loading
-
-                console.info("interceptor request ...");
+                $N.loading(config);
                 return config || $q.when(config);
             },
             'response': function(response) {
@@ -42,15 +46,17 @@ define(["angularAMD","angular-route","ng-grid"],function(angularAMD){
                 }
                 window.localStorage.setItem("x-newegg-mobile-cookie",mobileCookie);
                 //处理loaded
-                console.info("interceptor response ...");
+                $N.loaded(response);
 
                 return response || $q.when(response);
             }
         };
-    });
+    }]);
     app.config(function($httpProvider){
         $httpProvider.interceptors.push("httpInterceptor");
     });
+
+
 
     //start
     angularAMD.bootstrap(app);

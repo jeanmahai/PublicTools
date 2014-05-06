@@ -17,6 +17,8 @@
             'angular-route': '../bower_components/angular-route/angular-route.min',
             'angularAMD': '../bower_components/angularAMD/angularAMD.min',
             'HomeController': 'controllers/HomeController',
+            'angular-cookies':'../bower_components/angular-cookies/angular-cookies.min',
+            "N":"N",
             'jquery': '../bower_components/jquery/jquery.min', 'DynamicController': "controllers/DynamicController", 'ng-grid': "../bower_components/ng-grid/ng-grid-2.0.11.min"
         },
 
@@ -24,7 +26,10 @@
         shim: {
             'angular': ["jquery"],
             'angularAMD': ['angular'],
-            'angular-route': ['angular'], "ng-grid": ["angular"]
+            'angular-route': ['angular'],
+            "ng-grid": ["angular"],
+            "angular-cookies":["angular"],
+            "N":["angular"]
         },
 
         // kick start application
