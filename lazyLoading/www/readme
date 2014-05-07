@@ -1,0 +1,11 @@
+index.html
+    容器,一般布需要修改.需要引用requirejs 文件和一个main.js的配置文件
+views/
+    存放所有的view子页面
+js/main.js
+    js依赖项配置,css配置
+js/scripts/app.js
+    angular配置,及一些自定义扩展,如provider,service,factory的应用,url route,http interceptor
+js/scripts/controllers
+    所有页面的额controller
+
