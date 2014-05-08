@@ -28,16 +28,21 @@ define(["angularAMD"
     //3.处理参数
     //modify angularAMD line angularAMD.prototype.route, line 108~111
     //================================
+
+    var routeOps={
+        home:{
+            templateUrl:"views/home.html",
+            controller:"homeController"
+        },
+        dataGrid1:{
+            templateUrl:"views/dataGrid1.html",
+            controller:"dataGrid1Controller"
+        }
+    };
     app.config(["$routeProvider", function ($routeProvider) {
         $routeProvider.
-            when("/home",angularAMD.route({
-                templateUrl:"views/home.html",
-                controller:"homeController"
-            })).
-            when("/datagrid1",angularAMD.route({
-                templateUrl:"views/dataGrid1.html",
-                controller:"dataGrid1Controller"
-            })).
+            when("/home",angularAMD.route(routeOps.home)).
+            when("/datagrid1",angularAMD.route(routeOps.dataGrid1)).
             otherwise({redirectTo:"/home"});
 //            when("/:name", angularAMD.route({
 //                templateUrl: function($routeParams){

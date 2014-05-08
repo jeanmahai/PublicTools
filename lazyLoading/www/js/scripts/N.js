@@ -16,7 +16,7 @@
                     if (this.showLoading){
                         if(!this.dom){
                             this.dom=document.createElement("div");
-                            this.dom.innerHTML="loading";
+                            this.dom.innerHTML="<div class='circle'></div><div class='circle1'></div>";
                             this.dom.setAttribute("class","n-loading")
 
                             document.body.appendChild(this.dom);
