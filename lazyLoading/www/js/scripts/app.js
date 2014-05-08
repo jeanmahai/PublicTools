@@ -20,22 +20,37 @@ define(["angularAMD"
     });
 
     //config url route
-    //fixed : dynamic route url
+    //================================
+    //动态routing,目前已经禁用了,由于功能还不成熟,暂停使用
+    //需要做的东西::controller/:view/:params
+    //1.动态去加载对应的view
+    //2.动态去加载对应的controller
+    //3.处理参数
     //modify angularAMD line angularAMD.prototype.route, line 108~111
+    //================================
     app.config(["$routeProvider", function ($routeProvider) {
         $routeProvider.
-            when("/:name", angularAMD.route({
-                templateUrl: function($routeParams){
-                    var tempUrl='views/' + $routeParams.name + ".html";
-                    return tempUrl;
-                },
-                controller: function(){
-                    console.info(window.location.href);
-                    var index=window.location.href.lastIndexOf("/");
-                    var name=window.location.href.substring(index+1);
-                    return name+"Controller";
-                }
-            }));
+            when("/home",angularAMD.route({
+                templateUrl:"views/home.html",
+                controller:"homeController"
+            })).
+            when("/datagrid1",angularAMD.route({
+                templateUrl:"views/dataGrid1.html",
+                controller:"dataGrid1Controller"
+            })).
+            otherwise({redirectTo:"/home"});
+//            when("/:name", angularAMD.route({
+//                templateUrl: function($routeParams){
+//                    var tempUrl='views/' + $routeParams.name + ".html";
+//                    return tempUrl;
+//                },
+//                controller: function(){
+//                    console.info(window.location.href);
+//                    var index=window.location.href.lastIndexOf("/");
+//                    var name=window.location.href.substring(index+1);
+//                    return name+"Controller";
+//                }
+//            }));
     }]);
 
     //interceptor http
