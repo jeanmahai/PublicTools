@@ -55,9 +55,10 @@
             "N": {
                 deps: ["angular"],
                 init: function () {
-                    loadCss("js/style/N.css");
+                    loadCss("css/N.css");
                 }
             },
+            "jquery-ui":["jquery"],
             "angular-date": {
                 deps: ["angular","jquery","jquery-ui"],
                 init: function (a,b,c) {

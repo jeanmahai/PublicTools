@@ -1,17 +1,23 @@
-<h3>table style 1</h3>
-<table class="pure-table">
-    <thead>
+<div class="header">
+    <div class="title">data grid 样式</div>
+    </header>
+</div>
+<div class="body">
+    <h3>table style 1</h3>
+    <table class="pure-table">
+        <thead>
         <tr>
             <th>#</th>
             <th>Name</th>
             <th>Age</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         <tr ng-repeat="item in data">
             <td>{{item.id}}</td>
             <td>{{item.name}}</td>
             <td>{{item.age}}</td>
         </tr>
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>

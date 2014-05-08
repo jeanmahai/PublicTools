@@ -1,6 +1,6 @@
 使用js库包括如下:
 requirejs
-jquery 1.10.x
+jquery 1.10.2
 jquery ui (datepicker) --jquery
 angular
 angularAMD --angular

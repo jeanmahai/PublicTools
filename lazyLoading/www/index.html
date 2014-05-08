@@ -4,22 +4,28 @@
     <meta http-equiv="pragma" content="no-cache"/>
     <title></title>
     <link href="js/bower_components/pure/pure-min.css" type="text/css" rel="stylesheet"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet"/>
     <script data-main="js/main.js" src="js/bower_components/requirejs/require.js"></script>
 </head>
 <body>
-<div class="pure-g">
-    <div class="pure-u-1-12" >
-        <div class="pure-menu pure-menu-open">
-            <a class="pure-menu-heading">Pure Css Demo</a>
-            <ul>
-                <li><a href="#/home">Home</a></li>
-                <li><a href="#/datagrid1">DataGrid-1</a></li>
-            </ul>
-        </div>
+<div class="pure-g layout">
+    <!--top-->
+    <div class="pure-u-1-1 top">
+        <div class="logo"></div>
     </div>
-    <div class="pure-u-11-12" ng-view>
+    <!--left-->
+    <div class="pure-u-4-24 left">
+        <!--<div class="pure-menu pure-menu-open">-->
+        <!--<a class="pure-menu-heading">Pure Css Demo</a>-->
+        <!--<ul>-->
+        <!--<li><a href="#/home">Home</a></li>-->
+        <!--<li><a href="#/datagrid1">DataGrid-1</a></li>-->
+        <!--</ul>-->
+        <!--</div>-->
+    </div>
+    <!--right-->
+    <div class="pure-u-20-24 right" ng-view>
 
     </div>
-</div>
 </body>
 </html>
