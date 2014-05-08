@@ -1,3 +1,23 @@
+使用js库包括如下:
+requirejs
+jquery 1.10.x
+jquery ui (datepicker) --jquery
+angular
+angularAMD --angular
+angular-route  --angular
+angular-cookie  --angular
+angualr-date  --angular
+               |--jquery
+               |--jquery ui (datepicker)
+               |--jquery css
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+angular-ng-grid  --angular
+                  |--jquery
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+使用css库包括如下:
+pure
+
 index.html
     容器,一般布需要修改.需要引用requirejs 文件和一个main.js的配置文件
 views/

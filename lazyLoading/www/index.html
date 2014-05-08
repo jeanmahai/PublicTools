@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="pragma" content="no-cache"/>
     <title></title>
+    <link href="js/bower_components/pure/pure-min.css" type="text/css" rel="stylesheet"/>
     <script data-main="js/main.js" src="js/bower_components/requirejs/require.js"></script>
 </head>
 <body>
-<div ng-view></div>
+<div class="pure-g">
+    <div class="pure-u-1-12" >
+        <div class="pure-menu pure-menu-open">
+            <a class="pure-menu-heading">Pure Css Demo</a>
+            <ul>
+                <li><a href="#/home">Home</a></li>
+                <li><a href="#/dataGrid1">DataGrid-1</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="pure-u-11-12" ng-view>
+
+    </div>
+</div>
 </body>
 </html>

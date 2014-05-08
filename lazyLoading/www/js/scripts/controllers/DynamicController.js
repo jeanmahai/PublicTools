@@ -32,7 +32,12 @@ define(["app"], function (app) {
                 $scope.getCookie = function () {
                     $scope.keyval.val = $cookieStore.get($scope.keyval.key);
                 };
-
+                $scope.dateOptions = {
+                    changeYear: true,
+                    changeMonth: true,
+                    yearRange: '1900:-0'
+                };
+                $scope.myDate;
 //        $scope.getRemoteCookie=function(){
 //            $http.get("../../service/Handler.ashx").
 //                then(function(res){

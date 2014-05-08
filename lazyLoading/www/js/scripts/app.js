@@ -2,12 +2,17 @@
  * Created by Jeanma on 14-5-5.
  */
 define(["angularAMD"
-        , "angular-route"
-        , "ng-grid"
-        , "angular-cookies"
-        , "N"], function (angularAMD) {
+    , "angular-route"
+    //, "ng-grid"
+    , "angular-cookies"
+    , "angular-date"
+    , "N"], function (angularAMD) {
 
-    var app = angular.module("app", ["ngRoute", "ngGrid", "ngCookies", "NProvider"]);
+    var app = angular.module("app", ["ngRoute"
+        //, "ngGrid"
+        , "ngCookies"
+        , "NProvider"
+        , "ui.date"]);
 
     //config $N
     app.run(function ($N) {
@@ -15,16 +20,22 @@ define(["angularAMD"
     });
 
     //config url route
+    //fixed : dynamic route url
+    //modify angularAMD line angularAMD.prototype.route, line 108~111
     app.config(["$routeProvider", function ($routeProvider) {
         $routeProvider.
-            when("/home", angularAMD.route({
-                templateUrl: "views/home.html",
-                controller: "HomeController"
-            })).
-            when("/demo", angularAMD.route({
-                templateUrl: "views/dynamicLoadControllerAndView.html", controller: "DynamicController"
-            })).
-            otherwise({redirectTo: "/home"});
+            when("/:name", angularAMD.route({
+                templateUrl: function($routeParams){
+                    var tempUrl='views/' + $routeParams.name + ".html";
+                    return tempUrl;
+                },
+                controller: function(){
+                    console.info(window.location.href);
+                    var index=window.location.href.lastIndexOf("/");
+                    var name=window.location.href.substring(index+1);
+                    return name+"Controller";
+                }
+            }));
     }]);
 
     //interceptor http
