@@ -2,30 +2,147 @@ html,
 body,
 .left,
 .right,
-.layout
-{height: 100%;}
-
-.top{
-    height:50px;
-    background: rgb(48,0,0);
+.layout {
+    height: 100%;
+    font-family: Microsoft YaHei;
 }
-.top .logo{
+
+.top {
+    height: 50px;
+    background: rgb(48, 0, 0);
+}
+.top div{display: inline-block;}
+.top .logo {
     height: 100%;
     width: 213px;
     background: url("../images/logo.png") no-repeat;
 }
-
-.left{
-    background: rgb(48,48,48);
+.top .n-top-menu{
+    height: 100%;
+    vertical-align: top;
+    float: right;
+    margin-right: 50px;
 }
-.right{}
+.top .n-top-menu li{
+    list-style: none;
+}
+.top .n-top-menu li a{
+    text-decoration: none;
+    color: white;
+    font-size: 0.6em;
+    background: rgb(125,27,26);
+    /*background: rgb(48,48,48);*/
+    padding: 6px 9px;
+    border-radius: 2px;
+}
 
-.right .header{
-    background: rgb(120,26,26);
+.left {
+    background: rgb(48, 48, 48);
+    overflow-y: scroll;
+}
+
+.right {
+}
+
+.right .header {
+    background: rgb(120, 26, 26);
     color: white;
     padding: 10px 0;
     background: url("../images/right_header_bg.png") repeat-x;
 }
-.right .header .title{
+
+.right .header .title {
+    margin-left: 20px;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+.n-seg {
+    height: 9px;
+    background: url("../images/n-seg.png") repeat-x;
+    margin: 0 10px;
+}
+
+/*自定义menu*/
+.n-menu-header{
+    color: #ffffff;
+    text-align: center;
+    margin: 10px 0;
+    font-size: 0.9em;
+}
+.n-menu {
+    background:rgb(48, 48, 48) !important;
+    border:none !important;
+}
+.n-menu .pure-menu-heading{
+    font-size: 0.8em;
+    font-weight: bold;
+    border: none;
+    color: rgb(189, 194, 213) !important;
+    cursor: pointer;
+}
+.n-menu .pure-menu-heading img{
+    width:16px;
+    height:16px;
+    /*vertical-align: bottom;*/
+    margin-right:10px;
+    position: relative;
+    top: 2px;
+}
+.n-menu li a{
+    color: white !important;
+    font-size:0.7em;
+}
+.n-menu li a i{
+    /*background: url("../images/star.png") no-repeat;*/
+    width:8px;
+    height: 8px;
+    background: rgb(254,242,166);
+    border-radius: 4px;
+    display: inline-block;
+    /*vertical-align: middle;*/
+    margin-right: 10px;
+}
+.n-menu li{
     margin-left: 20px;
 }
+.n-menu li a:hover{
+    background: #761b1b !important;
+}
+
+/*.n-menu-header {*/
+    /*color: rgb(189, 194, 213);*/
+    /*font-weight: bold;*/
+    /*padding-left: 10px;*/
+    /*margin: 10px 0;*/
+
+/*}*/
+
+/*.n-menu {*/
+
+/*}*/
+
+/*.n-menu ul {*/
+    /*padding: 0px;*/
+    /*margin: 0px;*/
+/*}*/
+
+/*.n-menu li {*/
+    /*list-style: none;*/
+    /*padding-left: 20px;*/
+    /*margin: 5px 0;*/
+/*}*/
+
+/*.n-menu li a {*/
+    /*color: white;*/
+    /*text-decoration: underline;*/
+    /*padding: 10px 0px 10px 0px;*/
+    /*font-size: 0.9em;*/
+    /*padding-left: 10px;*/
+    /*text-decoration: none;*/
+/*}*/
+
+/*.n-menu li img {*/
+    /*vertical-align: top;*/
+    /*margin-right: 3px;*/
+/*}*/

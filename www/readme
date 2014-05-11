@@ -1,3 +1,10 @@
+IE 7及以下版本不支持
+
+测试环境:
+chrome 最新
+FF 最新
+IE8,IE9
+
 使用js库包括如下:
 requirejs
 jquery 1.10.2

@@ -2,12 +2,15 @@
  * Created by Jeanma on 14-5-5.
  */
 define(window["appConfig"].angularModualJS, function (angularAMD) {
-    var cfg=window["appConfig"];
-    var app = angular.module("app",cfg.angularModualNames );
+    var cfg = window["appConfig"];
+    var app = angular.module("app", cfg.angularModualNames);
 
     //config $N
     app.run(function ($N) {
         $N.showLoading = cfg.showLoading;
+        if (cfg.loadingDom) {
+            $N.dom = cfg.loadingDom;
+        }
     });
 
     //config url route
@@ -19,16 +22,16 @@ define(window["appConfig"].angularModualJS, function (angularAMD) {
     //3.处理参数
     //modify angularAMD line angularAMD.prototype.route, line 108~111
     //================================
-    var routeOps=window["appRouteUrl"];
+    var routeOps = window["appRouteUrl"];
     app.config(["$routeProvider", function ($routeProvider) {
-        for(var ops in routeOps){
-            if(ops==="otherwise"){
+        for (var ops in routeOps) {
+            if (ops === "otherwise") {
                 $routeProvider.otherwise(routeOps[ops]);
                 continue;
             }
-            var routeUrl=routeOps[ops].routeUrl;
+            var routeUrl = routeOps[ops].routeUrl;
             delete routeOps[ops].routeUrl;
-            $routeProvider.when(routeUrl,angularAMD.route(routeOps[ops]));
+            $routeProvider.when(routeUrl, angularAMD.route(routeOps[ops]));
         }
     }]);
 

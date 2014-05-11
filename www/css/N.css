@@ -1,17 +1,17 @@
 .n-loading{
     position: fixed;
-    top: 50px;
-    height: auto;
+    bottom: 0px;
+    height: 60px;
     text-align: center;
     width: 80px;
     padding: 5px 0;
     /*background: green;*/
     right: -80px;
-    transition:right 0.5s;
-    -webkit-transition:right 0.5s;
-    -o-transition:right 0.5s;
-    -ms-transition:right 0.5s;
-    -moz-transition:right 0.5s;
+    transition:right 1s;
+    -webkit-transition:right 1s;
+    -o-transition:right 1s;
+    -ms-transition:right 1s;
+    -moz-transition:right 1s;
 }
 @-moz-keyframes spinPulse {
     0% { -moz-transform:rotate(160deg); opacity:0; box-shadow:0 0 1px #2187e7;}

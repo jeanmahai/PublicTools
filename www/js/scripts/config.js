@@ -7,6 +7,7 @@
     //config
     window["appConfig"]={
         showLoading:true,
+        loadingDom:document.getElementById("divLoading"),
         angularModualJS:["angularAMD"
             , "angular-route"
             //, "ng-grid"
