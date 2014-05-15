@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Utility", "Common.Utility\Common.Utility.csproj", "{DB4B1E23-9C62-4D76-BD59-DE42933A46C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soho.Utility", "Soho.Utility\Soho.Utility.csproj", "{DB4B1E23-9C62-4D76-BD59-DE42933A46C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Utility.DataAccess", "Common.Utility.DataAccess\Common.Utility.DataAccess.csproj", "{CE91AA77-2FF5-44C7-825B-BA7B87B235EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soho.Utility.DataAccess", "Soho.Utility.DataAccess\Soho.Utility.DataAccess.csproj", "{CE91AA77-2FF5-44C7-825B-BA7B87B235EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Utility.Web", "Common.Utility.Web\Common.Utility.Web.csproj", "{0C311B70-3D3D-4133-B54C-2E04C354A196}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soho.Utility.Web", "Soho.Utility.Web\Soho.Utility.Web.csproj", "{0C311B70-3D3D-4133-B54C-2E04C354A196}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Utility.WCF", "Common.Utility.WCF\Common.Utility.WCF.csproj", "{8171E1C6-C2D7-4D4C-86C1-B2D4CA8F441C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soho.Utility.WCF", "Soho.Utility.WCF\Soho.Utility.WCF.csproj", "{8171E1C6-C2D7-4D4C-86C1-B2D4CA8F441C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

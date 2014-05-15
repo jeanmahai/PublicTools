@@ -1,0 +1,43 @@
+﻿配置的Sample：
+<?xml version="1.0"?>
+<configuration>
+  <configSections>
+    <section name="mail" type="Soho.Utility.MailSection, Soho.Utility" />
+  </configSections>
+  <mail>
+    <smtp recover="60">
+		<add address="" port="" username="" password="" enableSsl="" />
+		<add address="" port="" username="" password="" enableSsl="" />
+		<add address="" port="" username="" password="" enableSsl="" />
+		<add address="" port="" username="" password="" enableSsl="" />
+	</smtp>
+    <queue subject="Mail" recover="60">
+		<add queueId="1" />
+		<add queueId="2" />
+		<add queueId="3" />
+	</queue>
+	<soap recover="60">
+		<add url="http://127.0.0.1:9999/Soap?singleWsdl" method="SendMail" />
+		<add url="http://127.0.0.2:9999/Soap?singleWsdl" method="SendMail" />
+		<add url="http://127.0.0.3:9999/Soap?singleWsdl" method="SendMail" />
+	</soap>
+	<restful recover="60">
+		<add url="http://127.0.0.1:9999/Rest/SendMail" method="Post" format="Json" />
+		<add url="http://127.0.0.2:9999/Rest/SendMail" method="Post" format="Json" />
+		<add url="http://127.0.0.3:9999/Rest/SendMail" method="Post" format="Json" />
+	</restful>
+  </mail>
+  <appSettings>
+    <add key="ServiceRegistryConfigUrl" value="http://10.16.83.72/esb/ServiceRegistry.aspx" />
+  </appSettings>
+</configuration>
+
+说明：
+1. 首先要配置configSections中的<section name="mail" type="Soho.Utility.MailSection, Soho.Utility" />
+2. <mail></mail>节点为配置主节点，该节点有4种子节点，分别为：
+（1）smtp，表示将邮件数据之间传送给smtp邮件服务器
+（2）queue，表示将邮件放到esb的消息队列中，其中queueId用来指消息队列编号，subject用来指定消息主题；另外如果使用了该节点的则需要在appSettings中设置ServiceRegistryConfigUrl；
+（3）restful，调用restful service来发送邮件，其中url为restful service地址，method为http的方式（Post、Get、Put、Delete），format有2种：Json和Xml
+（4）soap，调用标准soap 1.1的webservice来发送邮件，其中url为webservice地址，method为方法名字
+
+restful service和webservice的开发的要求，就是对于写日志的服务方法的入参数据，需要是一个参数，并且该参数类型为Soho.Utility.MailEntity或与这个类型属性相同、类名相同（命名空间可不同）的自定义类型也可以。

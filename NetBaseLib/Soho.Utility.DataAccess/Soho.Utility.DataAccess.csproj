@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CE91AA77-2FF5-44C7-825B-BA7B87B235EA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Soho.Utility.DataAccess</RootNamespace>
+    <AssemblyName>Soho.Utility.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HttpWebAdapters">
+      <HintPath>..\ReferenceLib\HttpWebAdapters.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\ReferenceLib\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="SolrNet">
+      <HintPath>..\ReferenceLib\SolrNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="KeyValueDataManager.cs" />
+    <Compile Include="KeyValue\IKeyValueDataProvider.cs" />
+    <Compile Include="KeyValue\KeyValueDataAccessSetting.cs" />
+    <Compile Include="KeyValue\KeyValueDataAccessSettingManager.cs" />
+    <Compile Include="KeyValue\KeyValueDataManager.cs" />
+    <Compile Include="KeyValue\MongoDBProvider.cs" />
+    <Compile Include="KeyValue\SQLDBProvider.cs" />
+    <Compile Include="KeyValue\XmlFileDataManager.cs" />
+    <Compile Include="KeyValue\XmlFileDataProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RLDBManager.cs" />
+    <Compile Include="RLDB\Config\ConfigHelper.cs" />
+    <Compile Include="RLDB\Config\DataAccessSection.cs" />
+    <Compile Include="RLDB\Config\DatabaseInstance.cs" />
+    <Compile Include="RLDB\Config\DataCommandFileList.cs" />
+    <Compile Include="RLDB\Config\DataOperations.cs" />
+    <Compile Include="RLDB\Config\DbConfigFileWatcher.cs" />
+    <Compile Include="RLDB\CustomDataCommand.cs" />
+    <Compile Include="RLDB\DataCommand.cs" />
+    <Compile Include="RLDB\DataCommandManager.cs" />
+    <Compile Include="RLDB\DbHelper.cs" />
+    <Compile Include="RLDB\DbProvider\ConnectionStringManager.cs" />
+    <Compile Include="RLDB\DbProvider\DaoSqlException.cs" />
+    <Compile Include="RLDB\DbProvider\DbFactories.cs" />
+    <Compile Include="RLDB\DbProvider\IDbFactory.cs" />
+    <Compile Include="RLDB\DbProvider\OdbcFactory.cs" />
+    <Compile Include="RLDB\DbProvider\OleDbFactory.cs" />
+    <Compile Include="RLDB\DbProvider\SqlServerFactory.cs" />
+    <Compile Include="RLDB\DbProvider\TransactionScopeConnections.cs" />
+    <Compile Include="RLDB\DynamicQuerySqlBuilder.cs" />
+    <Compile Include="SearchEngineManager.cs" />
+    <Compile Include="SearchEngine\ConfigurationErrorsException.cs" />
+    <Compile Include="SearchEngine\Expression.cs" />
+    <Compile Include="SearchEngine\FieldFilter.cs" />
+    <Compile Include="SearchEngine\FilterBase.cs" />
+    <Compile Include="SearchEngine\ISearchProvider.cs" />
+    <Compile Include="SearchEngine\Operation.cs" />
+    <Compile Include="SearchEngine\PagingInfo.cs" />
+    <Compile Include="SearchEngine\RangeFilter.cs" />
+    <Compile Include="SearchEngine\SearchCondition.cs" />
+    <Compile Include="SearchEngine\SearchEngineConfigManager.cs" />
+    <Compile Include="SearchEngine\Searcher.cs" />
+    <Compile Include="SearchEngine\Solr\SolrSearcher.cs" />
+    <Compile Include="SearchEngine\Solr\SolrSearchProvider.cs" />
+    <Compile Include="SearchEngine\SortItem.cs" />
+    <Compile Include="SearchEngine\SortOrderType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RLDB\CreateRealtimeTable.sql" />
+    <Content Include="SearchEngine\SearchEngineConfig.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SearchEngine\Solr\SolrNet.chm" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RLDB\DbProvider\DbProvider\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Soho.Utility\Soho.Utility.csproj">
+      <Project>{DB4B1E23-9C62-4D76-BD59-DE42933A46C5}</Project>
+      <Name>Soho.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
