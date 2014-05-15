@@ -73,11 +73,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Auth\AuthAttribute.cs" />
-    <Compile Include="Auth\AuthConfigurationSection.cs" />
-    <Compile Include="Auth\AuthMgr.cs" />
-    <Compile Include="Auth\DBAuth.cs" />
-    <Compile Include="Auth\IAuth.cs" />
+    <Compile Include="Framework\AuthAttribute.cs" />
+    <Compile Include="Framework\AuthConfigurationSection.cs" />
+    <Compile Include="Framework\AuthMgr.cs" />
+    <Compile Include="Framework\IAuth.cs" />
     <Compile Include="Cookie\CookieConfig.cs" />
     <Compile Include="Cookie\CookieHelper.cs" />
     <Compile Include="Cookie\HighSecurityCookie.cs" />
@@ -90,6 +89,8 @@
     <Compile Include="Css\CssBundleManager.cs" />
     <Compile Include="Css\CssConfigHelper.cs" />
     <Compile Include="Css\XmlHelper.cs" />
+    <Compile Include="Framework\PortalResult.cs" />
+    <Compile Include="Framework\ResultExecutAttribute.cs" />
     <Compile Include="Helper\MoneyHelper.cs" />
     <Compile Include="Mvc\Error\CustomHandleErrorAttribute.cs" />
     <Compile Include="Mvc\HtmlHelperExtensions.cs" />

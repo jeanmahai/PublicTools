@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Configuration;
 
-namespace Common.Utility.Web
+namespace Common.Utility.Web.Framework
 {
     public static class AuthMgr
     {
-        private static IAuth m_auth;
+        private static IAuth _Auth;
 
         static AuthMgr()
         {
@@ -28,7 +28,7 @@ namespace Common.Utility.Web
                 if (auth.Name.Trim().ToLower() == section.Default.ToLower())
                 {
                     Type authType = Type.GetType(auth.Type);
-                    m_auth = Activator.CreateInstance(authType) as IAuth;
+                    _Auth = Activator.CreateInstance(authType) as IAuth;
                     find = true;
                 }
             }
@@ -38,14 +38,14 @@ namespace Common.Utility.Web
             }
         }
 
-        public static bool Login(string userName, string pwd, string verifyCode)
+        public static bool ValidateLogin()
         {
-            return m_auth.Login(userName, pwd, verifyCode);
+            return _Auth.ValidateLogin();
         }
 
-        public static bool ValidateAuth()
+        public static bool ValidateAuth(string controller, string action)
         {
-            return m_auth.ValidateAuth();
+            return _Auth.ValidateAuth(controller, action);
         }
     }
 }
