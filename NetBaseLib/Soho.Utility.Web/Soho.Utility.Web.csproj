@@ -50,6 +50,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferenceLib\System.Net.Http.WebRequest.dll</HintPath>
     </Reference>
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -77,6 +78,7 @@
     <Compile Include="Framework\AuthConfigurationSection.cs" />
     <Compile Include="Framework\AuthMgr.cs" />
     <Compile Include="Framework\BusinessRouteConfiguration.cs" />
+    <Compile Include="Framework\CustomHandleErrorAttribute.cs" />
     <Compile Include="Framework\IAuth.cs" />
     <Compile Include="Cookie\CookieConfig.cs" />
     <Compile Include="Cookie\CookieHelper.cs" />

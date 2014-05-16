@@ -41,60 +41,59 @@ namespace Soho.Utility.Web
             {
                 return new Dictionary<string, CookieConfigEntity>(0);
             }
-            return new Dictionary<string, CookieConfigEntity>(0);
-            //return CacheManager.GetWithLocalCache<Dictionary<string, CookieConfigEntity>>("WEB_CookieConfig_GetCookieConfig", () =>
-            //{
-            //    Dictionary<string, CookieConfigEntity> dic = new Dictionary<string, CookieConfigEntity>();
-            //    XmlDocument doc = new XmlDocument();
-            //    doc.Load(CookieConfigFilePath);
-            //    XmlNodeList nodeList = doc.GetElementsByTagName("cookies");
-            //    if (nodeList != null && nodeList.Count > 0)
-            //    {
-            //        foreach (XmlNode xmlNode in nodeList)
-            //        {
-            //            if (xmlNode == null)
-            //            {
-            //                continue;
-            //            }
-            //            CookieConfigEntity entity = new CookieConfigEntity();
-            //            entity.NodeName = xmlNode.Attributes["nodeName"] != null ? xmlNode.Attributes["nodeName"].Value : null;
-            //            entity.PersistType = xmlNode.Attributes["persistType"] != null ? xmlNode.Attributes["persistType"].Value : null;
-            //            entity.SecurityLevel = xmlNode.Attributes["securityLevel"] != null ? xmlNode.Attributes["securityLevel"].Value : null;
-            //            if (string.IsNullOrWhiteSpace(entity.NodeName))
-            //            {
-            //                throw new ApplicationException("Not set node name for cookie config in file '" + path + "'");
-            //            }
-            //            if (dic.ContainsKey(entity.NodeName))
-            //            {
-            //                throw new ApplicationException("Duplicated cookie config of node '" + entity.NodeName + "' in file '" + path + "'");
-            //            }
-            //            if (string.IsNullOrWhiteSpace(entity.PersistType))
-            //            {
-            //                entity.PersistType = "Auto"; // 如果没有配置persistType，则默认为web
-            //            }
-            //            if (string.IsNullOrWhiteSpace(entity.SecurityLevel))
-            //            {
-            //                entity.SecurityLevel = "Middle"; // 如果没有配置securityLevel，则默认为Middle
-            //            }
-            //            foreach (XmlNode childNode in xmlNode.ChildNodes)
-            //            {
-            //                if (childNode.NodeType == XmlNodeType.Element)
-            //                {
-            //                    if (entity.Properties.ContainsKey(childNode.Name))
-            //                    {
-            //                        entity.Properties[childNode.Name] = childNode.InnerText;
-            //                    }
-            //                    else
-            //                    {
-            //                        entity.Properties.Add(childNode.Name, childNode.InnerText);
-            //                    }
-            //                }
-            //            }
-            //            dic.Add(entity.NodeName, entity);
-            //        }
-            //    }
-            //    return dic;
-            //}, path);
+            return CacheManager.GetWithLocalCache<Dictionary<string, CookieConfigEntity>>("WEB_CookieConfig_GetCookieConfig", () =>
+            {
+                Dictionary<string, CookieConfigEntity> dic = new Dictionary<string, CookieConfigEntity>();
+                XmlDocument doc = new XmlDocument();
+                doc.Load(CookieConfigFilePath);
+                XmlNodeList nodeList = doc.GetElementsByTagName("cookies");
+                if (nodeList != null && nodeList.Count > 0)
+                {
+                    foreach (XmlNode xmlNode in nodeList)
+                    {
+                        if (xmlNode == null)
+                        {
+                            continue;
+                        }
+                        CookieConfigEntity entity = new CookieConfigEntity();
+                        entity.NodeName = xmlNode.Attributes["nodeName"] != null ? xmlNode.Attributes["nodeName"].Value : null;
+                        entity.PersistType = xmlNode.Attributes["persistType"] != null ? xmlNode.Attributes["persistType"].Value : null;
+                        entity.SecurityLevel = xmlNode.Attributes["securityLevel"] != null ? xmlNode.Attributes["securityLevel"].Value : null;
+                        if (string.IsNullOrWhiteSpace(entity.NodeName))
+                        {
+                            throw new ApplicationException("Not set node name for cookie config in file '" + path + "'");
+                        }
+                        if (dic.ContainsKey(entity.NodeName))
+                        {
+                            throw new ApplicationException("Duplicated cookie config of node '" + entity.NodeName + "' in file '" + path + "'");
+                        }
+                        if (string.IsNullOrWhiteSpace(entity.PersistType))
+                        {
+                            entity.PersistType = "Auto"; // 如果没有配置persistType，则默认为web
+                        }
+                        if (string.IsNullOrWhiteSpace(entity.SecurityLevel))
+                        {
+                            entity.SecurityLevel = "Middle"; // 如果没有配置securityLevel，则默认为Middle
+                        }
+                        foreach (XmlNode childNode in xmlNode.ChildNodes)
+                        {
+                            if (childNode.NodeType == XmlNodeType.Element)
+                            {
+                                if (entity.Properties.ContainsKey(childNode.Name))
+                                {
+                                    entity.Properties[childNode.Name] = childNode.InnerText;
+                                }
+                                else
+                                {
+                                    entity.Properties.Add(childNode.Name, childNode.InnerText);
+                                }
+                            }
+                        }
+                        dic.Add(entity.NodeName, entity);
+                    }
+                }
+                return dic;
+            }, path);
         }
 
         private static CookieConfigEntity GetDefaultCookieConfig(string nodeName)

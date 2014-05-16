@@ -17,8 +17,8 @@ namespace Soho.Utility.Web.Framework
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            string clientFlag = filterContext.HttpContext.Request.Headers["x-soho-flag"];
-            if (!string.IsNullOrWhiteSpace(clientFlag))
+            bool clientFlag = filterContext.HttpContext.Request.Headers.AllKeys.Contains("x-soho-app-id");
+            if (clientFlag)
             {
                 string ServiceAppId = ConfigurationManager.AppSettings["AppId"];
                 ServiceAppId = string.IsNullOrWhiteSpace(ServiceAppId) ? "" : ServiceAppId;

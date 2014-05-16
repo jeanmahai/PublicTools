@@ -71,6 +71,7 @@
     <Compile Include="BusinessException.cs" />
     <Compile Include="Cache\CacheFactory.cs" />
     <Compile Include="Cache\CacheKeyGenerator.cs" />
+    <Compile Include="Cache\CacheManager.cs" />
     <Compile Include="Cache\CacheSection.cs" />
     <Compile Include="Cache\CacheStatisticManager.cs" />
     <Compile Include="Cache\CachingAttribute.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="DataMapper\ReturnMap.cs" />
     <Compile Include="DecimalConvertor.cs" />
     <Compile Include="DecimalUtility.cs" />
+    <Compile Include="DynamicJson.cs" />
     <Compile Include="Encryption\Asym_RSA.cs" />
     <Compile Include="Base64.cs" />
     <Compile Include="Encryption\CryptoAlgorithm.cs" />

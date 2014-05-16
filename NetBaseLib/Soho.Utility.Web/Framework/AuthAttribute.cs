@@ -31,10 +31,10 @@ namespace Soho.Utility.Web.Framework
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            string clientFlag = filterContext.HttpContext.Request.Headers["x-soho-flag"]; 
+            bool clientFlag = filterContext.HttpContext.Request.Headers.AllKeys.Contains("x-soho-app-id"); 
             string controller = filterContext.RouteData.Values["controller"].ToString();
             string action = filterContext.RouteData.Values["action"].ToString();
-            if (!string.IsNullOrWhiteSpace(clientFlag))
+            if (clientFlag)
             {
                 //客户端存在自定义标识，则是非Web方式请求，验证非Web方式的请求是否有效
                 if (!filterContext.HttpContext.Request.Headers.AllKeys.Contains("x-soho-app-id"))
