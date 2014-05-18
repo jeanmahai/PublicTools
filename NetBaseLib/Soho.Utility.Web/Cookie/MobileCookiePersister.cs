@@ -24,7 +24,7 @@ namespace Soho.Utility.Web
                 dynamic x1 = new DynamicJson();
                 x1[cookieName] = cookieValue;
                 string v = x1.ToString();
-                HttpContext.Current.Response.AppendHeader(MobileCookie.COOKIE_NAME, v);
+                HttpContext.Current.Response.AddHeader(MobileCookie.COOKIE_NAME, v);
             }
         }
 

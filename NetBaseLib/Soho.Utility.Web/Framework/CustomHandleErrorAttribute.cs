@@ -26,6 +26,8 @@ namespace Soho.Utility.Web.Framework
                         Success = false,
                         Message = GetExceptionInfo(filterContext.Exception, filterContext.HttpContext.Request.IsLocal)
                     }));
+                    filterContext.HttpContext.Response.TrySkipIisCustomErrors = true;
+                    filterContext.ExceptionHandled = HandleException(filterContext.Exception);
                     HttpContext.Current.Response.End();
                     return;
                 }

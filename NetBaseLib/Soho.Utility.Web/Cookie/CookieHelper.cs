@@ -43,6 +43,7 @@ namespace Soho.Utility.Web
         {
             if (HttpContext.Current.Request.Headers.AllKeys.Contains(MobileCookie.COOKIE_NAME)
                 || HttpContext.Current.Request.Browser.IsMobileDevice
+                || HttpContext.Current.Request.Headers.AllKeys.Contains("x-soho-app-id")
                 //mobile 所有的请求必须经过core里的方法进行调用,否则头信息不能回写
                 //|| (HttpContext.Current.Request.QueryString.AllKeys.Count()>0&&HttpContext.Current.Request.QueryString["type"].ToUpper()=="MOBILE")
                 )
@@ -94,10 +95,20 @@ namespace Soho.Utility.Web
             Dictionary<string, string> parameters;
             LoadConfig(nodeName, out persistType, out securityLevel, out parameters);
 
-            ICookiePersist persister = CreatePersister(persistType);
             ICookieEncryption safer = CreateCookieHelper(securityLevel);
             string cookieValue = safer.EncryptCookie<T>(obj, parameters);
-            persister.Save(GetCookieName(nodeName, parameters), cookieValue, parameters);
+            if (persistType.ToUpper().Equals("AUTO"))
+            {
+                ICookiePersist persister = s_Web;
+                persister.Save(GetCookieName(nodeName, parameters), cookieValue, parameters);
+                persister = s_Mobile;
+                persister.Save(GetCookieName(nodeName, parameters), cookieValue, parameters);
+            }
+            else
+            {
+                ICookiePersist persister = CreatePersister(persistType);
+                persister.Save(GetCookieName(nodeName, parameters), cookieValue, parameters);
+            }
         }
 
         /// <summary>
@@ -116,7 +127,17 @@ namespace Soho.Utility.Web
             ICookiePersist persister = CreatePersister(persistType);
             string cookieValue = persister.Get(GetCookieName(nodeName, parameters), parameters);
             ICookieEncryption safer = CreateCookieHelper(securityLevel);
-            return safer.DecryptCookie<T>(cookieValue, parameters);
+            var result = safer.DecryptCookie<T>(cookieValue, parameters);
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                persister = s_Web;
+                cookieValue = persister.Get(GetCookieName(nodeName, parameters), parameters);
+                return safer.DecryptCookie<T>(cookieValue, parameters);
+            }
         }
 
         /// <summary>

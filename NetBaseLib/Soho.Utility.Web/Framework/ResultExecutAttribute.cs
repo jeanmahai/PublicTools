@@ -42,15 +42,18 @@ namespace Soho.Utility.Web.Framework
                 {
                     //客户端存在自定义标识，则是非Web方式请求，直接返回Json数据
                     ViewResult viewResult = filterContext.Result as ViewResult;
-                    var modelData = viewResult.Model as PortalResult;
-                    MobilePortalResult responseData = new MobilePortalResult(modelData);
+                    if (viewResult != null)
+                    {
+                        var modelData = viewResult.Model as PortalResult;
+                        MobilePortalResult responseData = new MobilePortalResult(modelData);
 
-                    var mobileCookie = HttpContext.Current.Response.Headers["x-soho-mobile-cookie"] == null ? "" : HttpContext.Current.Response.Headers["x-soho-mobile-cookie"].ToString();
-                    responseData.Cookie = mobileCookie;
+                        var mobileCookie = HttpContext.Current.Response.Headers["x-soho-mobile-cookie"] == null ? "" : HttpContext.Current.Response.Headers["x-soho-mobile-cookie"].ToString();
+                        responseData.Cookie = mobileCookie;
 
-                    HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize2(responseData));
-                    HttpContext.Current.Response.End();
-                }
+                        HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize2(responseData));
+                        HttpContext.Current.Response.End();
+                    }
+                } 
             }
         }
         /// <summary>
