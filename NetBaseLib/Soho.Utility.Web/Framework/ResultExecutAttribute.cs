@@ -29,7 +29,7 @@ namespace Soho.Utility.Web.Framework
                 if (bIsMustBusinessRoute)
                 {
                     HttpContext.Current.Response.StatusCode = (int)HttpStatusCode.OK;
-                    HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize2(new PortalResult
+                    HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize3(new PortalResult
                     {
                         Code = 1000001,
                         Success = false,
@@ -45,13 +45,27 @@ namespace Soho.Utility.Web.Framework
                     if (viewResult != null)
                     {
                         var modelData = viewResult.Model as PortalResult;
-                        MobilePortalResult responseData = new MobilePortalResult(modelData);
 
-                        var mobileCookie = HttpContext.Current.Response.Headers["x-soho-mobile-cookie"] == null ? "" : HttpContext.Current.Response.Headers["x-soho-mobile-cookie"].ToString();
-                        responseData.Cookie = mobileCookie;
+                        //是否返回自定义cookie
+                        string serviceSohoOrigin = ConfigurationManager.AppSettings["SohoOrigin"];
+                        serviceSohoOrigin = string.IsNullOrWhiteSpace(serviceSohoOrigin) ? "" : serviceSohoOrigin;
+                        if (filterContext.HttpContext.Request.Headers.AllKeys.Contains("x-soho-origin")
+                            && serviceSohoOrigin.Contains(filterContext.HttpContext.Request.Headers["x-soho-origin"].ToString()))
+                        {
+                            MobilePortalResult responseData = new MobilePortalResult(modelData);
 
-                        HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize2(responseData));
-                        HttpContext.Current.Response.End();
+                            var mobileCookie = HttpContext.Current.Response.Headers["x-soho-mobile-cookie"] == null ? "" : HttpContext.Current.Response.Headers["x-soho-mobile-cookie"].ToString();
+                            responseData.Cookie = mobileCookie;
+
+                            HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize3(responseData));
+                            HttpContext.Current.Response.End();
+                        }
+                        else
+                        {
+                            HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize3(modelData));
+                            HttpContext.Current.Response.End();
+                        }
+                        throw new BusinessException("");
                     }
                 } 
             }

@@ -46,10 +46,10 @@ namespace Soho.Utility.Web
             int securityExpires = 0;
             int.TryParse(parameters["securityExpires"], out securityExpires);
 
-            arrayCookieValue[0] = SerializationUtility.JsonSerialize2(obj);
+            arrayCookieValue[0] = SerializationUtility.JsonSerialize3(obj);
             arrayCookieValue[1] = DateTime.Now.AddMinutes(securityExpires).ToString();
             arrayCookieValue[2] = GetClientIP();
-            strCookieValue = SerializationUtility.JsonSerialize2(arrayCookieValue);
+            strCookieValue = SerializationUtility.JsonSerialize3(arrayCookieValue);
 
             strEncCookieValue = RC4Encrypt.Encrypt(strCookieValue, parameters["rc4key"], RC4Encrypt.EncoderMode.HexEncoder).Trim();
             strSHA1Sign = HashEncrypt.SHA1Encrypt(strEncCookieValue + parameters["hashkey"]);
@@ -85,7 +85,7 @@ namespace Soho.Utility.Web
                 if (strContent.Length == 0)
                     return result;
 
-                arrayCookieValue = SerializationUtility.JsonDeserialize2<string[]>(strContent);
+                arrayCookieValue = SerializationUtility.JsonDeserialize3<string[]>(strContent);
                 if (arrayCookieValue != null && arrayCookieValue.Length == 3)
                 {
                     if (DateTime.Parse(arrayCookieValue[1]) > DateTime.Now && GetClientIP() == arrayCookieValue[2])

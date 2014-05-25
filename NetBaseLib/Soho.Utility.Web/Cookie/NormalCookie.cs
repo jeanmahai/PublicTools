@@ -15,12 +15,12 @@ namespace Soho.Utility.Web
 
         public string EncryptCookie<T>(T obj, Dictionary<string, string> parameters)
         {
-            return SerializationUtility.JsonSerialize2(obj);
+            return SerializationUtility.JsonSerialize3(obj);
         }
 
         public T DecryptCookie<T>(string cookieValue, Dictionary<string, string> parameters)
         {
-            return SerializationUtility.JsonDeserialize2<T>(cookieValue);
+            return SerializationUtility.JsonDeserialize3<T>(cookieValue);
         }
 
         #endregion

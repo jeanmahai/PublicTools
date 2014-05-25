@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
+using System.Text.RegularExpressions;
 
 namespace Soho.Utility
 {
@@ -257,5 +258,33 @@ namespace Soho.Utility
                 return (T)formatter.Deserialize(stream);
             }
         }
+
+        #region
+        /// <summary>  
+        /// JSON序列化  
+        /// </summary>  
+        public static string JsonSerialize3<T>(T t)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string jsonString = serializer.Serialize(t);
+            return jsonString;
+        }
+        /// <summary>  
+        /// JSON反序列化  
+        /// </summary>  
+        public static T JsonDeserialize3<T>(string jsonString)
+        {
+            jsonString = Regex.Replace(jsonString, @"\\/Date\((\d+)\)\\/", match =>
+            {
+                DateTime dt = new DateTime(1970, 1, 1);
+                dt = dt.AddMilliseconds(long.Parse(match.Groups[1].Value));
+                dt = dt.ToLocalTime();
+                return dt.ToString("yyyy-MM-dd HH:mm:ss");
+            });
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            return serializer.Deserialize<T>(jsonString);
+        }
+        #endregion
     }
 }

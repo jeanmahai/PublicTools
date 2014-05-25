@@ -19,7 +19,7 @@ namespace Soho.Utility.Web
             string strEncCookieValue = string.Empty;
             string strSHA1Sign = string.Empty;
 
-            strCookieValue = SerializationUtility.JsonSerialize2(obj);
+            strCookieValue = SerializationUtility.JsonSerialize3(obj);
 
             strEncCookieValue = RC4Encrypt.Encrypt(strCookieValue, parameters["rc4key"], RC4Encrypt.EncoderMode.HexEncoder).Trim();
             strSHA1Sign = HashEncrypt.SHA1Encrypt(strEncCookieValue + parameters["hashkey"]);
@@ -54,7 +54,7 @@ namespace Soho.Utility.Web
                 if (strContent.Length == 0)
                     return result;
 
-                result = SerializationUtility.JsonDeserialize2<T>(strContent);
+                result = SerializationUtility.JsonDeserialize3<T>(strContent);
 
                 return result;
             }

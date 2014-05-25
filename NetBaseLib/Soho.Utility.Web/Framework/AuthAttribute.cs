@@ -40,7 +40,7 @@ namespace Soho.Utility.Web.Framework
                 if (!filterContext.HttpContext.Request.Headers.AllKeys.Contains("x-soho-app-id"))
                 {                    
                     HttpContext.Current.Response.StatusCode = (int)HttpStatusCode.OK;
-                    HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize2(new PortalResult
+                    HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize3(new PortalResult
                     {
                         Code = 1000001,
                         Success = false,
@@ -55,7 +55,7 @@ namespace Soho.Utility.Web.Framework
                 if (appId != ServiceAppId)
                 {
                     HttpContext.Current.Response.StatusCode = (int)HttpStatusCode.OK;
-                    HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize2(new PortalResult
+                    HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize3(new PortalResult
                     {
                         Code = 1000001,
                         Success = false,
@@ -69,7 +69,7 @@ namespace Soho.Utility.Web.Framework
                     if (!ValidateLogin())
                     {
                         HttpContext.Current.Response.StatusCode = (int)HttpStatusCode.OK;
-                        HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize2(new PortalResult
+                        HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize3(new PortalResult
                         {
                             Code = 1000000,
                             Success = false,
@@ -81,7 +81,7 @@ namespace Soho.Utility.Web.Framework
                     if (!ValidateAuth(controller, action))
                     {
                         HttpContext.Current.Response.StatusCode = (int)HttpStatusCode.OK;
-                        HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize2(new PortalResult
+                        HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize3(new PortalResult
                         {
                             Code = 1000001,
                             Success = false,
