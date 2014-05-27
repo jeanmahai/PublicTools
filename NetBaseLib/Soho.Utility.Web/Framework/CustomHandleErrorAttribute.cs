@@ -21,7 +21,7 @@ namespace Soho.Utility.Web.Framework
                 {
                     HttpContext.Current.Response.Clear();
                     HttpContext.Current.Response.BufferOutput = true;
-                    HttpContext.Current.Response.StatusCode = (int)HttpStatusCode.OK;
+                    //HttpContext.Current.Response.StatusCode = (int)HttpStatusCode.OK;
                     HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize3(new PortalResult
                     {
                         Code = GetExceptionCode(filterContext.Exception, filterContext.HttpContext.Request.IsLocal),

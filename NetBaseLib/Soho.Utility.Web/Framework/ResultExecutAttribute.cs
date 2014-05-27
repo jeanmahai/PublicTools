@@ -28,7 +28,7 @@ namespace Soho.Utility.Web.Framework
                     filterContext.RouteData.Values["action"].ToString());
                 if (bIsMustBusinessRoute)
                 {
-                    HttpContext.Current.Response.StatusCode = (int)HttpStatusCode.OK;
+                    //HttpContext.Current.Response.StatusCode = (int)HttpStatusCode.OK;
                     HttpContext.Current.Response.Write(SerializationUtility.JsonSerialize3(new PortalResult
                     {
                         Code = 1000001,
