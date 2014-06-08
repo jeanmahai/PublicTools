@@ -227,5 +227,21 @@ namespace Soho.Utility.DataAccess
                 }
             }
         }
+
+        public static ArrayList DatatableConvertArrayList(DataTable dt)
+        {
+            ArrayList result = new ArrayList();
+            DateTime dtNow = DateTime.Now;
+            foreach (DataRow dr in dt.Rows)
+            {
+                Dictionary<string, object> drow = new Dictionary<string, object>();
+                foreach (DataColumn dc in dt.Columns)
+                {
+                    drow.Add(dc.ColumnName, (DateTime.TryParse(dr[dc.ColumnName].ToString(), out dtNow) ? dr[dc.ColumnName].ToString() : dr[dc.ColumnName]));
+                }
+                result.Add(drow);
+            }
+            return result;
+        }
     }
 }
